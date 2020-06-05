@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="test_blue">#338BFF</color>
+    <color name="main_bg_color">#EBEBEB</color>
+    <color name="main_gray">#9F9FA0</color>
+
+    <color name="black">#ff000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="c3cc3b8">#3cc3b8</color>
+    <color name="c009AFB">#009AFB</color>
+    <color name="c666">#666</color>
+    <color name="cccc">#ccc</color>
+    <color name="gray_color">#ffe1e1e1</color>
+    <color name="light_gray">#EBEBEB</color>
+    <color name="dark_gray">#555555</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="actionsheet_gray">#8F8F8F</color>
+    <color name="f7f7f8">#f7f7f8</color>
+
+    <color name="text_blue">#ff0099ff</color>
+    <color name="common_red">#CC2222</color>
+    <color name="common_green">#00CC00</color>
+    <color name="common_yellow">#CCCC00</color>
+    <color name="tab_selected">#FD7922</color>
+
+    <color name="middleblue">#5f9cf9</color>
+    <color name="bt_pass_color">#ff0099ff</color>
+</resources>

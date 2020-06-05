@@ -1,0 +1,151 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/gray_color"
+    android:orientation="vertical" >
+
+    <com.youth.banner.Banner
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/corner_white">
+
+                    <Button
+                        android:id="@+id/btn_emergency"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/round_red"
+                        android:text="@string/one_key_emergency"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/tv_set_emergency_contacts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setEmergencyContacts"
+                        android:textColor="@color/main_orange_color"
+                        android:textSize="13sp"
+                        android:layout_alignParentRight="true"
+                        android:autoLink="all"
+                        android:layout_alignTop="@+id/btn_emergency">
+                    </TextView>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="50dp"
+                    android:paddingBottom="50dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:background="@drawable/corner_white">
+
+                    <Button
+                        android:id="@+id/btn_baidu_map"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/round_green"
+                        android:text="@string/test_map"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:visibility="gone"/>
+
+                    <Button
+                        android:id="@+id/btn_110_dial"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/round_green"
+                        android:text="@string/s110"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                    <Button
+                        android:id="@+id/btn_119_dial"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/round_green"
+                        android:text="@string/s119"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                    <Button
+                        android:id="@+id/btn_120_dial"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/round_green"
+                        android:text="@string/s120"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/corner_white"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/btn_onekey_police"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        style="?android:attr/buttonStyle"
+
+                        android:background="@drawable/round_yellow"
+                        android:text="@string/one_key_police_alarm"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/btn_video_help"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        style="?android:attr/buttonStyle"
+
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/round_green"
+                        android:text="@string/video_help"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

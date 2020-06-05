@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:id="@+id/llEt"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/px128"
+		android:background="@color/white"
+		android:gravity="center_vertical"
+		android:orientation="horizontal"
+		android:paddingLeft="@dimen/px19"
+		android:paddingRight="@dimen/px19">
+    <EditText
+          android:id="@+id/etName"
+          android:layout_width="70dp"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="@dimen/px30"
+          android:padding="@dimen/px10"
+          android:textSize="@dimen/textsize_40px"
+          android:gravity="center" />
+    <EditText
+          android:id="@+id/etRelation"
+          android:layout_width="70dp"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="@dimen/px30"
+          android:padding="@dimen/px10"
+          android:textSize="@dimen/textsize_40px"
+          android:gravity="center"
+          android:clickable="true"
+          android:focusable="false" />
+      <EditText
+          android:id="@+id/etTel"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1.0"
+          android:layout_marginRight="@dimen/px30"
+          android:padding="@dimen/px10"
+          android:textSize="@dimen/textsize_40px"
+          android:inputType="phone"
+          android:gravity="center" />
+      <Button 
+          android:id="@+id/btnDel"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:background="@drawable/del"/>
+	</LinearLayout>
+	<Button 
+	    android:id="@+id/btnAddMoreOne"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/blue_btn_bg"
+	    android:text="@string/add_more_one"
+	    android:textColor="#F44E31"
+	    android:textSize="15sp"
+	    android:layout_marginTop="@dimen/px25"
+	    android:layout_marginBottom="@dimen/px25"
+	    android:layout_marginRight="@dimen/px56"
+	    android:layout_marginLeft="@dimen/px56"
+		android:visibility="gone"
+	    />
+</LinearLayout>

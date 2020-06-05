@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="6dp"
+            android:text="@string/show_location"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_textsize" />
+    </RelativeLayout>
+	<FrameLayout
+	    android:id="@+id/baiduMap"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1.0">
+	</FrameLayout>
+    <LinearLayout
+	    android:id="@+id/llLocInfo"
+        android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:background="@color/white"
+	    android:padding="12dp">
+	    <TextView 
+	    	android:id="@+id/tvAddName"
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:textColor="@color/black"
+	    	android:textSize="18sp"
+	    	android:text="雅居乐锦官城"
+	    	android:gravity="center_vertical|left"/>
+	    <TextView 
+	    	android:id="@+id/tvAddress"
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:textColor="@color/c666"
+	    	android:textSize="14sp"
+	    	android:text="广州市番禺区桥南街福贤路268号"
+	    	android:layout_marginTop="5dp"
+	    	android:gravity="center_vertical|left"/>
+    </LinearLayout>
+</LinearLayout>
