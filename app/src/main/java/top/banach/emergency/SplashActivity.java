@@ -48,15 +48,6 @@ public class SplashActivity extends Activity {
     }
 
     private void startLogin() {
-//        Intent intent = new Intent(SplashActivity.this, LoginForDevActivity.class);
-//        Boolean autoLogin = SPUtils.getBoolean(SplashActivity.this.getApplicationContext(), Constants.AUTO_LOGIN, false);
-//        Intent intent;
-//        if (autoLogin) {
-//            intent = new Intent(SplashActivity.this, MainActivity.class);
-//        } else {
-//            intent = new Intent(SplashActivity.this, SplashActivity.class);
-//        }
-
         String lastLoginDate = SPUtils.getString(getApplicationContext(), C.Key.LAST_LOGIN_DATE, null);
         LogUtils.i(TAG, "lastLoginDate:" + lastLoginDate);
         if (lastLoginDate!= null) {
@@ -98,8 +89,6 @@ public class SplashActivity extends Activity {
                 //错误码 code 和错误描述 desc，可用于定位请求失败原因
                 //错误码 code 列表请参见错误码表
                 Log.d(TAG, "login failed. code: " + code + " errmsg: " + desc);
-//                Toast.makeText(SplashActivity.this, "登陆聊天模块失败！", Toast.LENGTH_SHORT).show();
-//                SPUtils.remove(SplashActivity.this.getApplicationContext(), C.Key.LAST_LOGIN_DATE);
                 startLoginActivity();
             }
 
@@ -107,12 +96,6 @@ public class SplashActivity extends Activity {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "autologin succ");
-//                SPUtils.putString(SplashActivity.this.getApplicationContext(),C.params.appUserId, userId);
-//                SPUtils.putString(SplashActivity.this.getApplicationContext(),C.params.userSig, userSig);
-//                SPUtils.putBoolean(SplashActivity.this.getApplicationContext(), Constants.AUTO_LOGIN, true);
-//                SPUtils.putString(SplashActivity.this.getApplicationContext(), C.Key.LAST_LOGIN_DATE, DateUtil.getCurrentTime());
-//
-//                Toast.makeText(SplashActivity.this, "登陆成功！", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 SplashActivity.this.finish();

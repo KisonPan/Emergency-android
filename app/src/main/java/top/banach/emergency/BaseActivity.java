@@ -41,10 +41,6 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
 
     public static void logout(Context context, boolean autoLogin) {
         DemoLog.i(TAG, "logout");
-//        SharedPreferences shareInfo = context.getSharedPreferences(Constants.USERINFO, Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = shareInfo.edit();
-//        editor.putBoolean(Constants.AUTO_LOGIN, autoLogin);
-//        editor.commit();
 
         SPUtils.putBoolean(context.getApplicationContext(), Constants.AUTO_LOGIN, autoLogin);
         SPUtils.remove(context.getApplicationContext(), "cid");
@@ -52,7 +48,6 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
         SPUtils.remove(context.getApplicationContext(), C.params.userSig);
         SPUtils.remove(context.getApplicationContext(), C.params.appUserId);
 
-//        Intent intent = new Intent(context, LoginForDevActivity.class);
         Intent intent = new Intent(context, LoginActivity.class);
         intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(Constants.LOGOUT, true);
