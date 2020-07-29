@@ -1,6 +1,8 @@
 package top.banach.emergency.main;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -20,6 +22,9 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.huawei.android.hms.agent.HMSAgent;
 import com.huawei.android.hms.agent.common.handler.ConnectHandler;
 import com.huawei.android.hms.agent.push.handler.GetTokenHandler;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.entity.LocalMedia;
 import com.tencent.imsdk.utils.IMFunc;
 
 import top.banach.emergency.BaseActivity;
@@ -33,6 +38,7 @@ import top.banach.emergency.home.HomeFragment;
 import top.banach.emergency.profile.ProfileFragment;
 import top.banach.emergency.thirdpush.ThirdPushTokenMgr;
 import top.banach.emergency.utils.DemoLog;
+import top.banach.emergency.utils.LogUtils;
 import top.banach.emergency.utils.SPUtils;
 
 import com.tencent.qcloud.tim.uikit.modules.chat.GroupChatManagerKit;
@@ -42,6 +48,7 @@ import com.vector.update_app.UpdateAppManager;
 import com.vivo.push.IPushActionListener;
 import com.vivo.push.PushClient;
 
+import java.util.List;
 
 
 public class MainActivity extends BaseActivity implements ConversationManagerKit.MessageUnreadWatcher {
@@ -303,5 +310,19 @@ public class MainActivity extends BaseActivity implements ConversationManagerKit
                 DemoLog.i(TAG, "huawei push get token result code: " + rtnCode);
             }
         });
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == PictureConfig.CHOOSE_REQUEST) {
+                List<LocalMedia> localMedia = PictureSelector.obtainMultipleResult(data);
+                String imagePath = localMedia.get(0).getCompressPath();
+
+                LogUtils.i("--MainActivity--imagePath=" + imagePath);
+            }
+        }
     }
 }

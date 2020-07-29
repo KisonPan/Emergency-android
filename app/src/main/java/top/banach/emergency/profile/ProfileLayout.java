@@ -52,6 +52,12 @@ public class ProfileLayout extends LinearLayout implements View.OnClickListener 
     private int mJoinTypeIndex = 2;
     private String mIconUrl;
 
+    private OnProfileClickListener profileClickListener;
+
+    public void setProfileClickListener(OnProfileClickListener listener) {
+        profileClickListener = listener;
+    }
+
     public ProfileLayout(Context context) {
         super(context);
         init();
@@ -148,14 +154,15 @@ public class ProfileLayout extends LinearLayout implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.modify_user_icon) {
-            mIconUrl = String.format("https://picsum.photos/id/%d/200/200", new Random().nextInt(1000));
-            GlideEngine.loadImage(mUserIcon, Uri.parse(mIconUrl));
-            updateProfile();
+//            mIconUrl = String.format("https://picsum.photos/id/%d/200/200", new Random().nextInt(1000));
+//            GlideEngine.loadImage(mUserIcon, Uri.parse(mIconUrl));
+//            updateProfile();
+            profileClickListener.onModifyUserClick();
 
-            SharedPreferences shareInfo = getContext().getSharedPreferences(Constants.USERINFO, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = shareInfo.edit();
-            editor.putString(Constants.ICON_URL, mIconUrl);
-            editor.commit();
+//            SharedPreferences shareInfo = getContext().getSharedPreferences(Constants.USERINFO, Context.MODE_PRIVATE);
+////            SharedPreferences.Editor editor = shareInfo.edit();
+////            editor.putString(Constants.ICON_URL, mIconUrl);
+////            editor.commit();
 
         } else if (v.getId() == R.id.modify_nick_name) {
             Bundle bundle = new Bundle();
