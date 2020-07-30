@@ -84,6 +84,13 @@ public class Menu {
                     intent.putExtra(TUIKitConstants.GroupType.TYPE, TUIKitConstants.GroupType.CHAT_ROOM);
                     mActivity.startActivity(intent);
                 }
+
+                if (TextUtils.equals(action.getActionName(), mActivity.getResources().getString(R.string.create_team))) {
+                    Intent intent = new Intent(DemoApplication.instance(), StartGroupChatActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(TUIKitConstants.GroupType.TYPE, TUIKitConstants.GroupType.CHAT_ROOM);
+                    mActivity.startActivity(intent);
+                }
                 mMenuWindow.dismiss();
             }
         };
@@ -92,39 +99,54 @@ public class Menu {
         List<PopMenuAction> menuActions = new ArrayList<PopMenuAction>();
 
         PopMenuAction action = new PopMenuAction();
+//
+//        if (menuType == MENU_TYPE_CONVERSATION) {
+//            action.setActionName(mActivity.getResources().getString(R.string.start_conversation));
+//            action.setActionClickListener(popActionClickListener);
+//            action.setIconResId(R.drawable.create_c2c);
+//            menuActions.add(action);
+//        }
+//
+//        if (menuType == MENU_TYPE_CONTACT) {
+//            action = new PopMenuAction();
+//            action.setActionName(mActivity.getResources().getString(R.string.add_friend));
+//            action.setIconResId(R.drawable.group_new_friend);
+//            action.setActionClickListener(popActionClickListener);
+//            menuActions.add(action);
+//
+//            action = new PopMenuAction();
+//            action.setActionName(mActivity.getResources().getString(R.string.add_group));
+//            action.setIconResId(R.drawable.ic_contact_join_group);
+//            action.setActionClickListener(popActionClickListener);
+//            menuActions.add(action);
+//        }
+//
+//        if (menuType == MENU_TYPE_CONTACT) {
+//            mActions.clear();
+//            mActions.addAll(menuActions);
+//            return;
+//        }
 
-        if (menuType == MENU_TYPE_CONVERSATION) {
-            action.setActionName(mActivity.getResources().getString(R.string.start_conversation));
-            action.setActionClickListener(popActionClickListener);
-            action.setIconResId(R.drawable.create_c2c);
-            menuActions.add(action);
-        }
-
-        if (menuType == MENU_TYPE_CONTACT) {
-            action = new PopMenuAction();
-            action.setActionName(mActivity.getResources().getString(R.string.add_friend));
-            action.setIconResId(R.drawable.group_new_friend);
-            action.setActionClickListener(popActionClickListener);
-            menuActions.add(action);
-
-            action = new PopMenuAction();
-            action.setActionName(mActivity.getResources().getString(R.string.add_group));
-            action.setIconResId(R.drawable.ic_contact_join_group);
-            action.setActionClickListener(popActionClickListener);
-            menuActions.add(action);
-        }
-
-        if (menuType == MENU_TYPE_CONTACT) {
-            mActions.clear();
-            mActions.addAll(menuActions);
-            return;
-        }
-
-        action = new PopMenuAction();
-        action.setActionName(mActivity.getResources().getString(R.string.create_private_group));
-        action.setIconResId(R.drawable.group_icon);
-        action.setActionClickListener(popActionClickListener);
-        menuActions.add(action);
+//        action = new PopMenuAction();
+//        action.setActionName(mActivity.getResources().getString(R.string.create_private_group));
+//        action.setIconResId(R.drawable.group_icon);
+//        action.setActionClickListener(popActionClickListener);
+//        menuActions.add(action);
+//
+//        action = new PopMenuAction();
+//        action.setActionName(mActivity.getResources().getString(R.string.create_group_chat));
+//        action.setIconResId(R.drawable.group_icon);
+//        action.setActionClickListener(popActionClickListener);
+//        menuActions.add(action);
+//
+//        action = new PopMenuAction();
+//        action.setActionName(mActivity.getResources().getString(R.string.create_chat_room));
+//        action.setIconResId(R.drawable.group_icon);
+//        action.setActionClickListener(popActionClickListener);
+//        menuActions.add(action);
+//
+//        mActions.clear();
+//        mActions.addAll(menuActions);
 
         action = new PopMenuAction();
         action.setActionName(mActivity.getResources().getString(R.string.create_group_chat));
@@ -133,13 +155,14 @@ public class Menu {
         menuActions.add(action);
 
         action = new PopMenuAction();
-        action.setActionName(mActivity.getResources().getString(R.string.create_chat_room));
+        action.setActionName(mActivity.getResources().getString(R.string.create_team));
         action.setIconResId(R.drawable.group_icon);
         action.setActionClickListener(popActionClickListener);
         menuActions.add(action);
 
         mActions.clear();
         mActions.addAll(menuActions);
+
     }
 
     public boolean isShowing() {
