@@ -4,12 +4,31 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+//    signingConfigs {
+//        release {
+//            storeFile file("$System.env.KEYSTORE_PATH")
+//            storePassword "$System.env.STOREPASS"
+//            keyAlias "$System.env.ALIAS"
+//            keyPassword "$System.env.KEYPASS"
+//        }
+//    }
+
     signingConfigs {
         release {
-            storeFile file("$System.env.KEYSTORE_PATH")
-            storePassword "$System.env.STOREPASS"
-            keyAlias "$System.env.ALIAS"
-            keyPassword "$System.env.KEYPASS"
+            v1SigningEnabled true
+            v2SigningEnabled true
+            storeFile file('..\\kisonpan.keystore')
+            keyAlias 'kisonpan'
+            keyPassword 'kison79'
+            storePassword 'kison79'
+        }
+        debug {
+            v1SigningEnabled true
+            v2SigningEnabled true
+            storeFile file('..\\kisonpan.keystore')
+            keyAlias 'kisonpan'
+            keyPassword 'kison79'
+            storePassword 'kison79'
         }
     }
 
@@ -44,24 +63,7 @@ android {
         }
     }
 
-    signingConfigs {
-        release {
-            v1SigningEnabled true
-            v2SigningEnabled true
-            storeFile file('..\\kisonpan.keystore')
-            keyAlias 'kisonpan'
-            keyPassword 'kison79'
-            storePassword 'kison79'
-        }
-        debug {
-            v1SigningEnabled true
-            v2SigningEnabled true
-            storeFile file('..\\kisonpan.keystore')
-            keyAlias 'kisonpan'
-            keyPassword 'kison79'
-            storePassword 'kison79'
-        }
-    }
+
 
     repositories {
         flatDir {
@@ -77,6 +79,11 @@ android {
         main {
             jniLibs.srcDir 'libs'
         }
+    }
+
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 

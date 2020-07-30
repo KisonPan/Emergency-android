@@ -91,7 +91,6 @@ public class ProfileFragment extends BaseFragment {
         mProfileLayout.setProfileClickListener(new OnProfileClickListener() {
             @Override
             public void onModifyUserClick() {
-                LogUtils.i("--imagePath=" + "onModifyUserClick");
                 PictureSelector.create(ProfileFragment.this.getActivity())
                         .openGallery(PictureMimeType.ofImage())
                         .imageEngine(GlideEngine.createGlideEngine())
@@ -102,44 +101,8 @@ public class ProfileFragment extends BaseFragment {
                         .compressQuality(50)
                         .minimumCompressSize(100)
                         .forResult(PictureConfig.CHOOSE_REQUEST);
-
-                LogUtils.i("--imagePath=" + "onModifyUserClick--end");
             }
         });
 
-
-
-
-
-//        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//            super.onActivityResult(requestCode, resultCode, data)
-//            if (resultCode === Activity.RESULT_OK) {
-//                when (requestCode) {
-//                    PictureConfig.CHOOSE_REQUEST -> {                   // onResult Callback
-//                        var selectList: MutableList<LocalMedia>? = PictureSelector.obtainMultipleResult(data)
-//                        var imagePath = selectList?.get(0)?.compressPath
-//                        if (imagePath == null) {
-//                            imagePath = selectList?.get(0)?.cutPath
-//                        }
-//                        iv_pic.setImageBitmap(BitmapFactory.decodeFile(imagePath))
-//                    } else -> {}
-//                }
-//            }
-//        }
-
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == PictureConfig.CHOOSE_REQUEST) {
-                List<LocalMedia> localMedia = PictureSelector.obtainMultipleResult(data);
-                String imagePath = localMedia.get(0).getCompressPath();
-
-                LogUtils.i("--imagePath=" + imagePath);
-            }
-        }
     }
 }

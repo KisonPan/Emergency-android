@@ -32,7 +32,6 @@ import com.tencent.qcloud.tim.uikit.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 public class ProfileLayout extends LinearLayout implements View.OnClickListener {
 
@@ -46,7 +45,7 @@ public class ProfileLayout extends LinearLayout implements View.OnClickListener 
     private LineControllerView mModifyNickNameView;
     private LineControllerView mModifyAllowTypeView;
     private LineControllerView mModifySignatureView;
-    private LineControllerView mAboutIM;
+    private LineControllerView mAbout;
     private ArrayList<String> mJoinTypeTextList = new ArrayList<>();
     private ArrayList<String> mJoinTypeIdList = new ArrayList<>();
     private int mJoinTypeIndex = 2;
@@ -109,9 +108,9 @@ public class ProfileLayout extends LinearLayout implements View.OnClickListener 
         mModifyAllowTypeView = findViewById(R.id.modify_allow_type);
         mModifyAllowTypeView.setCanNav(true);
         mModifyAllowTypeView.setOnClickListener(this);
-        mAboutIM = findViewById(R.id.about_im);
-        mAboutIM.setCanNav(true);
-        mAboutIM.setOnClickListener(this);
+        mAbout = findViewById(R.id.about);
+        mAbout.setCanNav(true);
+        mAbout.setOnClickListener(this);
 
         mJoinTypeTextList.add(getResources().getString(R.string.allow_type_allow_any));
         mJoinTypeTextList.add(getResources().getString(R.string.allow_type_deny_any));
@@ -201,7 +200,7 @@ public class ProfileLayout extends LinearLayout implements View.OnClickListener 
                     updateProfile();
                 }
             });
-        } else if (v.getId() == R.id.about_im) {
+        } else if (v.getId() == R.id.about) {
             Intent intent = new Intent((Activity) getContext(), WebViewActivity.class);
             ((Activity) getContext()).startActivity(intent);
         }
