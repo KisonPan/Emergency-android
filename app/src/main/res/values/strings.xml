@@ -21,11 +21,11 @@
     <string name="allow_type_deny_any">拒绝任何人</string>
     <string name="allow_type_need_confirm">需要验证</string>
     <string name="exit">退出登录</string>
-    <string name="about_im">关于即时通信IM</string>
+    <string name="about">关于</string>
 
     // 主页Tab相关
     <string name="tab_main_tab_text">首页</string>
-    <string name="tab_contact_tab_text">通讯录</string>
+    <string name="tab_contact_tab_text">好友</string>
     <string name="tab_conversation_tab_text">消息</string>
     <string name="tab_profile_tab_text">我</string>
 

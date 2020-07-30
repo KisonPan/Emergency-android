@@ -23,7 +23,7 @@ public class WebViewActivity extends BaseActivity {
         setContentView(R.layout.profile_about_activity);
 
         mTitleBar = findViewById(R.id.webview_title);
-        mTitleBar.setTitle(getResources().getString(R.string.about_im), TitleBarLayout.POSITION.MIDDLE);
+        mTitleBar.setTitle(getResources().getString(R.string.about), TitleBarLayout.POSITION.MIDDLE);
         mTitleBar.getRightIcon().setVisibility(View.GONE);
         mTitleBar.setOnLeftClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +33,8 @@ public class WebViewActivity extends BaseActivity {
         });
         mWebView = (WebView) findViewById(R.id.wv_view);
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl("https://cloud.tencent.com/product/im");
+//        mWebView.loadUrl("https://cloud.tencent.com/product/im");
+        mWebView.loadUrl("http://www.banach.top");
         mWebView.setWebViewClient(new MyWebViewClient());
     }
 
