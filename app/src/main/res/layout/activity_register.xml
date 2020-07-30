@@ -22,7 +22,7 @@
                 android:id="@+id/iv_confirm_code"
                 android:layout_width="160dp"
                 android:layout_height="80dp"
-                android:background="@drawable/no_banner"></ImageView>
+                android:background="@drawable/no_banner" />
 
             <TextView
                 android:layout_width="wrap_content"

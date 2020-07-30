@@ -96,7 +96,8 @@
             android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="5dp"
+            android:visibility="gone">
         </View>
         <EditText
             android:id="@+id/et_idno"
@@ -112,7 +113,8 @@
             android:textSize="15sp"
             android:drawableLeft="@drawable/shenfenzheng"
             android:drawablePadding="10dp"
-            android:hint="@string/please_input_identify"/>
+            android:hint="@string/please_input_identify"
+            android:visibility="gone"/>
 
         <View
             android:layout_width="match_parent"
