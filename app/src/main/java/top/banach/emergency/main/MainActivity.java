@@ -320,7 +320,9 @@ public class MainActivity extends BaseActivity implements ConversationManagerKit
             if (requestCode == PictureConfig.CHOOSE_REQUEST) {
                 List<LocalMedia> localMedia = PictureSelector.obtainMultipleResult(data);
                 String imagePath = localMedia.get(0).getCompressPath();
-
+                if (imagePath == null) {
+                    imagePath = localMedia.get(0).getCutPath();
+                }
                 LogUtils.i("--MainActivity--imagePath=" + imagePath);
             }
         }
