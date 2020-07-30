@@ -183,7 +183,7 @@ public class SetContactsActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_add:
-                String[] items = {"填写姓名手机号","从手机联系人中获取"};
+                String[] items = {"手工输入","从通讯录中获取"};
                 DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
