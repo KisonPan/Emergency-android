@@ -116,13 +116,7 @@ public class C {
 	}
 
 	public static final class api {
-//		/**
-//		 * 版本更新,
-//		 * 提交参数：{"info":{"token":"","imei":""},"postData":{"apkcode":"101",
-//		 * "apkname":"Android1.01","apktype":"Android"}}
-//		 */
-//		public static final String VERSION_CHECK = Base.BASE_URL + "/roomacceptance/mobile/appUpdate/checkUpdate.do";
-		
+
 		public static final String register = Base.BASE_URL + "/app/register.do";  //用户注册
 		public static final String loginOn = Base.BASE_URL + "/app/loginOn.do"; //用户登录
 		public static final String userInfo = Base.BASE_URL + "/app/userInfo.do"; //获取用户信息

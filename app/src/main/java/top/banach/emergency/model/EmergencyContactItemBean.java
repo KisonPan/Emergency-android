@@ -1,5 +1,7 @@
 package top.banach.emergency.model;
 
+import java.util.Objects;
+
 /**
  * Auto-generated: 2020-04-06 15:22:8
  *
@@ -42,13 +44,13 @@ public class EmergencyContactItemBean {
 
         EmergencyContactItemBean that = (EmergencyContactItemBean) o;
 
-        if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) {
+        if (!Objects.equals(mobile, that.mobile)) {
             return false;
         }
-        if (name != null ? !name.equals(that.name) : that.name != null) {
+        if (!Objects.equals(name, that.name)) {
             return false;
         }
-        return id != null ? id.equals(that.id) : that.id == null;
+        return Objects.equals(id, that.id);
     }
 
     @Override

@@ -3,7 +3,7 @@ package top.banach.emergency.api;
 public class Urls {
     //    public final static String BASE_URL = "http://chenyingjun.qicp.vip";
     public final static String BASE_URL = "https://app.banach.top";
-    public static final String USERSIG = BASE_URL + "/app/usersig";
+    public static final String USERS_IG = BASE_URL + "/app/usersig";
     public static final String SDK_APP_ID = BASE_URL + "/app/sdkAppId";
     public static final String LOGIN = BASE_URL + "/app/login";
     public static final String IMG_CODE = BASE_URL + "/app/imgCode";
