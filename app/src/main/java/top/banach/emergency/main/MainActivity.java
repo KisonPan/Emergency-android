@@ -25,11 +25,17 @@ import com.huawei.android.hms.agent.push.handler.GetTokenHandler;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.lzy.okhttputils.request.BaseRequest;
 import com.tencent.imsdk.utils.IMFunc;
 
+import okhttp3.Call;
+import okhttp3.Request;
+import okhttp3.Response;
 import top.banach.emergency.BaseActivity;
 import top.banach.emergency.R;
+import top.banach.emergency.api.Api;
 import top.banach.emergency.api.Urls;
+import top.banach.emergency.callback.StringCallBack;
 import top.banach.emergency.checkupdate.UpdateAppHttpUtil;
 import top.banach.emergency.constants.C;
 import top.banach.emergency.contact.ContactFragment;
@@ -37,9 +43,12 @@ import top.banach.emergency.conversation.ConversationFragment;
 import top.banach.emergency.home.HomeFragment;
 import top.banach.emergency.profile.ProfileFragment;
 import top.banach.emergency.thirdpush.ThirdPushTokenMgr;
+import top.banach.emergency.utils.BitmapUtil;
 import top.banach.emergency.utils.DemoLog;
+import top.banach.emergency.utils.HttpUtils;
 import top.banach.emergency.utils.LogUtils;
 import top.banach.emergency.utils.SPUtils;
+import top.banach.emergency.utils.ToastUtils;
 
 import com.tencent.qcloud.tim.uikit.modules.chat.GroupChatManagerKit;
 import com.tencent.qcloud.tim.uikit.modules.conversation.ConversationManagerKit;
@@ -48,6 +57,7 @@ import com.vector.update_app.UpdateAppManager;
 import com.vivo.push.IPushActionListener;
 import com.vivo.push.PushClient;
 
+import java.io.File;
 import java.util.List;
 
 
@@ -90,6 +100,63 @@ public class MainActivity extends BaseActivity implements ConversationManagerKit
                 .update();
 
         initLocation();
+
+//        String url = "http://47.106.78.102:39010/shorter/video/sliceencryption/downloadCertificateKey";
+//        downloadKey(url,"/sdcard/1/", "aeskey.key");
+//        String m3u8 = "http://47.106.254.153/group1/M00/2B/34/L2t00l8iY2eAISk0AAACcTMFMHs47.m3u8";
+//        download(m3u8, "/sdcard/1/", "noencrypt.m3u8");
+    }
+
+    private void downloadKey(String url, String path, String fileName) {
+        HttpUtils.downloadFilePost(this, url, new com.lzy.okhttputils.callback.FileCallback(path, fileName) {
+            @Override
+            public void onResponse(boolean b, File file, Request request, Response response) {
+
+                Log.i("Kison", "----onResponse----" + file.getAbsolutePath());
+
+            }
+
+            @Override
+            public void onError(boolean isFromCache, Call call, Response response, Exception e) {
+                super.onError(isFromCache, call, response, e);
+            }
+
+            @Override
+            public void downloadProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
+                super.downloadProgress(currentSize, totalSize, progress, networkSpeed);
+            }
+
+            @Override
+            public void onBefore(BaseRequest request) {
+                super.onBefore(request);
+            }
+        });
+    }
+
+    private void download(String url, String path, String fileName) {
+        HttpUtils.downloadFile(this, url, new com.lzy.okhttputils.callback.FileCallback(path, fileName) {
+            @Override
+            public void onResponse(boolean b, File file, Request request, Response response) {
+
+                Log.i("Kison", "----onResponse----" + file.getAbsolutePath());
+
+            }
+
+            @Override
+            public void onError(boolean isFromCache, Call call, Response response, Exception e) {
+                super.onError(isFromCache, call, response, e);
+            }
+
+            @Override
+            public void downloadProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
+                super.downloadProgress(currentSize, totalSize, progress, networkSpeed);
+            }
+
+            @Override
+            public void onBefore(BaseRequest request) {
+                super.onBefore(request);
+            }
+        });
     }
 
     private void initLocation() {
@@ -324,6 +391,20 @@ public class MainActivity extends BaseActivity implements ConversationManagerKit
                     imagePath = localMedia.get(0).getCutPath();
                 }
                 LogUtils.i("--MainActivity--imagePath=" + imagePath);
+
+                String imageBase64 = BitmapUtil.bitmapToBase64(imagePath);
+
+                Api.uploadPortrait(this, imageBase64, new StringCallBack.HttpCallBack() {
+                    @Override
+                    public void httpSucc(String result, Object request) {
+                        ToastUtils.showLong(MainActivity.this, "上传成功" + result);
+                    }
+
+                    @Override
+                    public void httpfalse(String result) {
+                        ToastUtils.showLong(MainActivity.this, "上传失败");
+                    }
+                });
             }
         }
     }

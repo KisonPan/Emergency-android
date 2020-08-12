@@ -141,6 +141,27 @@ public class BitmapUtil {
 	}
 
 	/**
+	 * 将图片转成base64
+	 * @param imgPath
+	 * @return
+	 */
+	public static String bitmapToBase64(String imgPath) {
+		Bitmap bitmap = BitmapFactory.decodeFile(imgPath);
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+		byte[] bytes = os.toByteArray();
+		byte[] encode = Base64.encode(bytes,Base64.DEFAULT);
+		String encodeStr = new String(encode);
+		return encodeStr;
+	}
+
+//	public Bitmap Base64ToBitMap(String base64) {
+//		byte[] decode = Base64.decode(base64, Base64.DEFAULT);
+//		Bitmap bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+//		return bitmap;
+//	}
+
+	/**
 	 * 二进制流转换为Bitmap图片
 	 * @param temp
 	 * @return

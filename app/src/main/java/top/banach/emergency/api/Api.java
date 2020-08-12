@@ -146,6 +146,32 @@ public class Api {
                 .execute(new StringCallBack(httpCallBack));
     }
 
+    //post方法
+    public static void httpPostString(Context context, String httpUrl, String imageStr, StringCallBack.HttpCallBack httpCallBack) {
+        cid = SPUtils.getString(context.getApplicationContext(), "cid", null);
+        if (cid==null || cid.isEmpty()) {
+            cid = UUIDGenerator.generateUUID();
+            SPUtils.putString(context.getApplicationContext(),"cid", cid);
+        }
+
+        Long timestamp = System.currentTimeMillis();
+        Log.i(context.getClass().getName(), "[post] httpUrl= " + httpUrl);
+
+        LogUtils.i(context.getClass().getName(), "[post data] " + "=" + imageStr);
+
+        Gson gson = new Gson();
+        //  创建  RequestBody
+        RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain"), imageStr);
+        OkHttpUtils.post(httpUrl)
+                .connTimeOut(C.TIME_OUT)
+                .writeTimeOut(C.TIME_OUT)
+                .readTimeOut(C.TIME_OUT)
+                .headers("timestamp", timestamp.toString())
+                .headers("cid", cid)
+                .requestBody(requestBody)
+                .execute(new StringCallBack(httpCallBack));
+    }
+
     //delete方法
     public static void httpDelete(Context context, String httpUrl, StringCallBack.HttpCallBack httpCallBack) {
         cid = SPUtils.getString(context.getApplicationContext(), "cid", null);
@@ -301,5 +327,10 @@ public class Api {
     //保存用户信息
     public static void saveUserInfo(Context context, HashMap<String, String> params, StringCallBack.HttpCallBack callBack) {
         httpPut(context, Urls.USER, params, callBack);
+    }
+
+    //上传头像
+    public static void uploadPortrait(Context context, String strBase64, StringCallBack.HttpCallBack callBack) {
+        httpPostString(context, Urls.PORTRAIT, strBase64, callBack);
     }
 }

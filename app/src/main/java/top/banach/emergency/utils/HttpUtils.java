@@ -70,6 +70,13 @@ public class HttpUtils {
 				.tag(context)//
 				.execute(fileCallBack);
 	}
+
+	public static void downloadFilePost(Context context,String url,FileCallback fileCallBack) {
+		OkHttpUtils.post(url)
+				.params("videoId", "3")
+				.tag(context)
+				.execute(fileCallBack);
+	}
 	
 	
 	public static void httpGet(Context context, String url, StringCallBack.HttpCallBack httpCallBack) {

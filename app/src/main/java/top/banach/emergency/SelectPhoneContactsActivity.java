@@ -10,6 +10,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.Manifest;
 import android.provider.ContactsContract;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,8 +46,10 @@ public class SelectPhoneContactsActivity extends BaseActivity {
 
     private List<EmergencyContactItemBean> listContacts;
     private List<EmergencyContactItemBean> listSeleted;
+    private List<EmergencyContactItemBean> listSearchResult;
     private ContactAdapter adapter;
     private Button btnAdd;
+    private EditText etSearch;
     private LoadingDialog loadingDialog;
 
     @Override
@@ -67,6 +72,7 @@ public class SelectPhoneContactsActivity extends BaseActivity {
 
         listContacts = new ArrayList<>();
         listSeleted = new ArrayList<>();
+        listSearchResult = new ArrayList<>();
         adapter = new ContactAdapter();
 
         //判断是否开启读取通讯录的权限
@@ -94,6 +100,20 @@ public class SelectPhoneContactsActivity extends BaseActivity {
                 addContacts(contacts);
             }
         });
+
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(Editable s) {
+                String keyword = s.toString();
+
+
+            }
+        });
+
     }
 
     private void addContacts(String contactJson) {
