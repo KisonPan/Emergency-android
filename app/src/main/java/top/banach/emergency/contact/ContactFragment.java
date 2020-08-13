@@ -12,6 +12,7 @@ import top.banach.emergency.R;
 import top.banach.emergency.menu.Menu;
 import top.banach.emergency.utils.DemoLog;
 import com.tencent.qcloud.tim.uikit.base.BaseFragment;
+import com.tencent.qcloud.tim.uikit.component.TitleBarLayout;
 import com.tencent.qcloud.tim.uikit.modules.contact.ContactItemBean;
 import com.tencent.qcloud.tim.uikit.modules.contact.ContactLayout;
 import com.tencent.qcloud.tim.uikit.modules.contact.ContactListView;
@@ -37,6 +38,9 @@ public class ContactFragment extends BaseFragment {
         mContactLayout = view.findViewById(R.id.contact_layout);
         mMenu = new Menu(getActivity(), mContactLayout.getTitleBar(), Menu.MENU_TYPE_CONTACT);
         mContactLayout.getTitleBar().getRightIcon().setVisibility(View.GONE);
+        mContactLayout.getTitleBar().setTitle(
+                getResources().getString(R.string.tab_contact_tab_text),
+                TitleBarLayout.POSITION.MIDDLE);
 //        mContactLayout.getTitleBar().setOnRightClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
