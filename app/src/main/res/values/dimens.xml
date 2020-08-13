@@ -2,7 +2,7 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="title_textsize">22sp</dimen>
+    <dimen name="title_textsize">16sp</dimen>
     <dimen name="textsize_32px">10sp</dimen>
     <dimen name="textsize_34px">12sp</dimen>
     <dimen name="textsize_38px">14sp</dimen>

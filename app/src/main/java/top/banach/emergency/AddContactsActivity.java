@@ -2,6 +2,7 @@ package top.banach.emergency;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -12,6 +13,7 @@ import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 
 import top.banach.emergency.api.Api;
 import top.banach.emergency.callback.StringCallBack;
+import top.banach.emergency.utils.DialogUtils;
 
 public class AddContactsActivity extends BaseActivity {
 
@@ -62,7 +64,22 @@ public class AddContactsActivity extends BaseActivity {
             public void httpSucc(String result, Object request) {
                 loadingDialog.loadSuccess();
                 loadingDialog.close();
-                finish();
+//                finish();
+                DialogUtils.showAlertDialog(AddContactsActivity.this,
+                        "添加成功，是否继续添加?",
+                        "是", "否",
+                        new DialogUtils.OnDialogClickListener() {
+                            @Override
+                            public void onPositiveClick(DialogInterface dialog) {
+                                etPhoneNo.setText("");
+                                etUserName.setText("");
+                            }
+
+                            @Override
+                            public void onNegativeClick(DialogInterface dialog) {
+                                finish();
+                            }
+                        });
             }
 
             @Override

@@ -60,4 +60,15 @@ public class EmergencyContactItemBean {
         result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
     }
+
+    public boolean containsWord(String keyword) {
+        if (mobile.contains(keyword)) {
+            return true;
+        }
+        if (name.contains(keyword)) {
+            return true;
+        }
+
+        return false;
+    }
 }

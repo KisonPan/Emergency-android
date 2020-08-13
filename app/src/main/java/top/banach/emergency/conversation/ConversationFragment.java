@@ -2,11 +2,17 @@ package top.banach.emergency.conversation;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
@@ -17,18 +23,26 @@ import top.banach.emergency.chat.ChatActivity;
 import top.banach.emergency.menu.Menu;
 import top.banach.emergency.utils.Constants;
 import com.tencent.qcloud.tim.uikit.base.BaseFragment;
+import com.tencent.qcloud.tim.uikit.base.IUIKitCallBack;
 import com.tencent.qcloud.tim.uikit.component.TitleBarLayout;
 import com.tencent.qcloud.tim.uikit.component.action.PopActionClickListener;
 import com.tencent.qcloud.tim.uikit.component.action.PopDialogAdapter;
 import com.tencent.qcloud.tim.uikit.component.action.PopMenuAction;
 import com.tencent.qcloud.tim.uikit.modules.chat.base.ChatInfo;
 import com.tencent.qcloud.tim.uikit.modules.conversation.ConversationLayout;
+import com.tencent.qcloud.tim.uikit.modules.conversation.ConversationListAdapter;
 import com.tencent.qcloud.tim.uikit.modules.conversation.ConversationListLayout;
+import com.tencent.qcloud.tim.uikit.modules.conversation.ConversationManagerKit;
+import com.tencent.qcloud.tim.uikit.modules.conversation.ConversationProvider;
 import com.tencent.qcloud.tim.uikit.modules.conversation.base.ConversationInfo;
 import com.tencent.qcloud.tim.uikit.utils.PopWindowUtil;
+import com.tencent.qcloud.tim.uikit.utils.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 
 public class ConversationFragment extends BaseFragment {
@@ -40,6 +54,8 @@ public class ConversationFragment extends BaseFragment {
     private PopupWindow mConversationPopWindow;
     private List<PopMenuAction> mConversationPopActions = new ArrayList<>();
     private Menu mMenu;
+    private EditText etSearch;
+    private TitleBarLayout titleBarLayout;
 
     @Nullable
     @Override
@@ -50,14 +66,28 @@ public class ConversationFragment extends BaseFragment {
     }
 
     private void initView() {
+        etSearch = mBaseView.findViewById(R.id.et_search);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(Editable s) {
+                String keyword = s.toString();
+                search(keyword);
+            }
+        });
+
+
         // 从布局文件中获取会话列表面板
         mConversationLayout = mBaseView.findViewById(R.id.conversation_layout);
         mMenu = new Menu(getActivity(), (TitleBarLayout) mConversationLayout.getTitleBar(), Menu.MENU_TYPE_CONVERSATION);
         // 会话列表面板的默认UI和交互初始化
         mConversationLayout.initDefault();
-        mConversationLayout.getTitleBar().setTitle(
-                getResources().getString(R.string.tab_conversation_tab_text),
-                TitleBarLayout.POSITION.MIDDLE);
+//        mConversationLayout.getTitleBar().setTitle(
+//                getResources().getString(R.string.tab_conversation_tab_text),
+//                TitleBarLayout.POSITION.MIDDLE);
         // 通过API设置ConversataonLayout各种属性的样例，开发者可以打开注释，体验效果
 //        ConversationLayoutHelper.customizeConversation(mConversationLayout);
         mConversationLayout.getConversationList().setOnItemClickListener(new ConversationListLayout.OnItemClickListener() {
@@ -73,12 +103,46 @@ public class ConversationFragment extends BaseFragment {
                 startPopShow(view, position, conversationInfo);
             }
         });
+
+
         initTitleAction();
         initPopMenuAction();
     }
 
+    private void search(String keyword) {
+        ConversationListAdapter adapter = mConversationLayout.getConversationList().getAdapter();
+        ConversationManagerKit.getInstance().loadConversation(new IUIKitCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                ConversationProvider sourceData = (ConversationProvider) data;
+                List<ConversationInfo> list = sourceData.getDataSource();
+                List<ConversationInfo> searchList = new ArrayList();
+                for (ConversationInfo item: list) {
+                    if (item.getTitle().contains(keyword)) {
+                        searchList.add(item);
+                    }
+                }
+                sourceData.setDataSource(searchList);
+                adapter.setDataProvider(sourceData);
+            }
+
+            @Override
+            public void onError(String module, int errCode, String errMsg) {
+                ToastUtil.toastLongMessage("加载消息失败");
+            }
+        });
+    }
+
     private void initTitleAction() {
-        mConversationLayout.getTitleBar().setOnRightClickListener(new View.OnClickListener() {
+        mConversationLayout.getTitleBar().setVisibility(View.GONE);
+        titleBarLayout = mBaseView.findViewById(R.id.conversation_title);
+        titleBarLayout.setTitle(
+                getResources().getString(R.string.tab_conversation_tab_text),
+                TitleBarLayout.POSITION.MIDDLE);
+        titleBarLayout.getLeftGroup().setVisibility(View.GONE);
+        titleBarLayout.setRightIcon(R.drawable.conversation_more);
+
+        titleBarLayout.setOnRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mMenu.isShowing()) {

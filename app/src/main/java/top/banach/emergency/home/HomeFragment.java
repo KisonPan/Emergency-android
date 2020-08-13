@@ -31,6 +31,7 @@ import top.banach.emergency.utils.LogUtils;
 import top.banach.emergency.utils.SPUtils;
 
 import com.tencent.qcloud.tim.uikit.base.BaseFragment;
+import com.tencent.qcloud.tim.uikit.component.TitleBarLayout;
 import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
@@ -70,7 +71,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private float yAixs = 113.1223f;
 
     private LoadingDialog loadingDialog;
-    private Boolean isHelping = false;
+//    private Boolean isHelping = false;
+    private TitleBarLayout titleBarLayout;
 
 
     @Override
@@ -104,6 +106,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     }
 
     private void initView(View root) {
+
+        titleBarLayout = root.findViewById(R.id.home_title_bar);
         btnEmergency = root.findViewById(R.id.btn_emergency);
         btn110 = root.findViewById(R.id.btn_110_dial);
         btn120 = root.findViewById(R.id.btn_120_dial);
@@ -126,14 +130,25 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 //        banner.setImages(imagePath);
 //        banner.start();
 
-        String sosId = SPUtils.getString(getActivity().getApplicationContext(), C.Key.sos_id, null);
-        if (sosId == null) {
-            isHelping = false;
-            btnEmergency.setText(R.string.one_key_emergency);
-        } else {
-            isHelping = true;
-            btnEmergency.setText(R.string.helping);
-        }
+//        String sosId = SPUtils.getString(getActivity().getApplicationContext(), C.Key.sos_id, null);
+//        if (sosId == null) {
+//            isHelping = false;
+//            btnEmergency.setText(R.string.one_key_emergency);
+//        } else {
+//            isHelping = true;
+//            btnEmergency.setText(R.string.helping);
+//        }
+
+
+        initTitleBar();
+    }
+
+    private void initTitleBar() {
+        titleBarLayout.setTitle(
+                getResources().getString(R.string.tab_main_tab_text),
+                TitleBarLayout.POSITION.MIDDLE);
+        titleBarLayout.getLeftGroup().setVisibility(View.GONE);
+        titleBarLayout.getRightIcon().setVisibility(View.GONE);
     }
 
     private void homeAds() {
@@ -220,8 +235,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 String code = sosResultBean.getCode();
                 if (code!= null && code.equals("1")) {
                     SPUtils.putString(HomeFragment.this.getActivity().getApplicationContext(), C.Key.sos_id, id);
-                    btnEmergency.setText(R.string.helping);
-                    isHelping = true;
+//                    btnEmergency.setText(R.string.helping);
+//                    isHelping = true;
                     loadingDialog.loadSuccess();
                 } else {
                     loadingDialog.loadFailed();
@@ -248,8 +263,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 @Override
                 public void httpSucc(String result, Object request) {
                     SPUtils.remove(HomeFragment.this.getActivity().getApplicationContext(), C.Key.sos_id);
-                    btnEmergency.setText(R.string.one_key_emergency);
-                    isHelping = false;
+//                    btnEmergency.setText(R.string.one_key_emergency);
+//                    isHelping = false;
                     loadingDialog.loadSuccess();
                 }
 
@@ -282,11 +297,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         int viewId = v.getId();
         switch (viewId) {
             case R.id.btn_emergency:
-                if (isHelping) {
-                    stopEmergency();
-                } else {
-                    sendEmergency();
-                }
+//                if (isHelping) {
+//                    stopEmergency();
+//                } else {
+//                    sendEmergency();
+//                }
+
+                sendEmergency();
                 break;
             case R.id.btn_110_dial:
                 dialNumber("110");

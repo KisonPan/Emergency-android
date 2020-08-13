@@ -7,6 +7,7 @@
     <color name="test_blue">#338BFF</color>
     <color name="main_bg_color">#EBEBEB</color>
     <color name="main_gray">#9F9FA0</color>
+    <color name="main_gray_50">#4CAFAFB0</color>
 
     <color name="black">#ff000000</color>
     <color name="white">#ffffffff</color>

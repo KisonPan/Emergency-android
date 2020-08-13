@@ -5,11 +5,10 @@
     android:background="@color/gray_color"
     android:orientation="vertical" >
 
-    <com.youth.banner.Banner
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/banner"
+    <com.tencent.qcloud.tim.uikit.component.TitleBarLayout
+        android:id="@+id/home_title_bar"
         android:layout_width="match_parent"
-        android:layout_height="160dp" />
+        android:layout_height="wrap_content" />
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -19,6 +18,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+
+            <com.youth.banner.Banner
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="160dp" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -63,8 +68,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="50dp"
-                    android:paddingBottom="50dp"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:layout_marginTop="30dp"

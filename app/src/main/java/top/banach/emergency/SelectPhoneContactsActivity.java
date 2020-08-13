@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.Manifest;
 import android.provider.ContactsContract;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,7 @@ import top.banach.emergency.utils.LogUtils;
 public class SelectPhoneContactsActivity extends BaseActivity {
 
     private List<EmergencyContactItemBean> listContacts;
+    private List<EmergencyContactItemBean> listAll;
     private List<EmergencyContactItemBean> listSeleted;
     private List<EmergencyContactItemBean> listSearchResult;
     private ContactAdapter adapter;
@@ -71,6 +73,7 @@ public class SelectPhoneContactsActivity extends BaseActivity {
         loadingDialog.setFailedText("保存失败");
 
         listContacts = new ArrayList<>();
+        listAll = new ArrayList<>();
         listSeleted = new ArrayList<>();
         listSearchResult = new ArrayList<>();
         adapter = new ContactAdapter();
@@ -101,6 +104,7 @@ public class SelectPhoneContactsActivity extends BaseActivity {
             }
         });
 
+        etSearch = findViewById(R.id.et_search);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -109,8 +113,20 @@ public class SelectPhoneContactsActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String keyword = s.toString();
-
-
+                if (TextUtils.isEmpty(keyword)) {
+                    listContacts.clear();
+                    listContacts.addAll(listAll);
+                } else {
+                    listSearchResult.clear();
+                    for (EmergencyContactItemBean item : listAll) {
+                        if (item.containsWord(keyword)) {
+                            listSearchResult.add(item);
+                        }
+                    }
+                    listContacts.clear();
+                    listContacts.addAll(listSearchResult);
+                }
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -194,9 +210,12 @@ public class SelectPhoneContactsActivity extends BaseActivity {
                     bean.setName(displayName);
                     bean.setMobile(number);
 //                    bean.setRelation("");
-                    listContacts.add(bean);
+                    listAll.add(bean);
                 }
 
+
+                listContacts.clear();
+                listContacts.addAll(listAll);
                 //刷新listview
                 adapter.notifyDataSetChanged();
             }

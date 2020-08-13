@@ -10,7 +10,9 @@
     <LinearLayout
         android:id="@+id/llEt"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
