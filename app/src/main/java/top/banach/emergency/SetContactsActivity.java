@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -299,12 +300,13 @@ public class SetContactsActivity extends BaseActivity {
         private void setListViewData(ViewHolder viewHolder, EmergencyContactItemBean ctItem) {
             String name = ctItem.getName();
             String mobile = ctItem.getMobile();
-            if(name == null) {
+            if(name == null || TextUtils.isEmpty(name)) {
                 name = "未知";
             }
             if (mobile == null) {
                 mobile = "";
             }
+
             viewHolder.tvHeadPortrait.setText(name.substring(name.length()-1));
             viewHolder.tvUsername.setText(name);
             viewHolder.tvPhoneNo.setText(mobile);
