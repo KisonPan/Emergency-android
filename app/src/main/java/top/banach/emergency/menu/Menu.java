@@ -88,7 +88,7 @@ public class Menu {
                 if (TextUtils.equals(action.getActionName(), mActivity.getResources().getString(R.string.create_team))) {
                     Intent intent = new Intent(DemoApplication.instance(), StartGroupChatActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(TUIKitConstants.GroupType.TYPE, TUIKitConstants.GroupType.CHAT_ROOM);
+                    intent.putExtra(TUIKitConstants.GroupType.TYPE, TUIKitConstants.GroupType.PRIVATE);
                     mActivity.startActivity(intent);
                 }
                 mMenuWindow.dismiss();
@@ -159,6 +159,12 @@ public class Menu {
         action.setIconResId(R.drawable.group_icon);
         action.setActionClickListener(popActionClickListener);
         menuActions.add(action);
+
+//        action = new PopMenuAction();
+//        action.setActionName(mActivity.getResources().getString(R.string.create_team));
+//        action.setIconResId(R.drawable.group_icon);
+//        action.setActionClickListener(popActionClickListener);
+//        menuActions.add(action);
 
         mActions.clear();
         mActions.addAll(menuActions);

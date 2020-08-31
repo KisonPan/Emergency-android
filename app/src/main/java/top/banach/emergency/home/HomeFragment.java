@@ -54,6 +54,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private Button btn110;
     private Button btn120;
     private Button btn119;
+    private Button btn122;
     private Button btnTestMap;
     private TextView tvSetEmergencyContacts;
 
@@ -112,6 +113,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         btn110 = root.findViewById(R.id.btn_110_dial);
         btn120 = root.findViewById(R.id.btn_120_dial);
         btn119 = root.findViewById(R.id.btn_119_dial);
+        btn122 = root.findViewById(R.id.btn_122_dial);
         btnTestMap = root.findViewById(R.id.btn_baidu_map);
         tvSetEmergencyContacts = root.findViewById(R.id.tv_set_emergency_contacts);
 
@@ -121,6 +123,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         btn110.setOnClickListener(this);
         btn120.setOnClickListener(this);
         btn119.setOnClickListener(this);
+        btn122.setOnClickListener(this);
         btnTestMap.setOnClickListener(this);
         tvSetEmergencyContacts.setOnClickListener(this);
 
@@ -313,6 +316,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 break;
             case R.id.btn_119_dial:
                 dialNumber("119");
+                break;
+            case R.id.btn_122_dial:
+                dialNumber("122");
                 break;
             case R.id.btn_baidu_map:
                 Intent intent = new Intent(getActivity(), ShowMapActivity.class);

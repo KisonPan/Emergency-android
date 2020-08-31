@@ -64,6 +64,7 @@
         <activity android:name=".chat.SendLocationActivity" />
         <activity android:name=".chat.ShowLocationActivity" />
         <activity android:name=".login.LoginActivity" />
+        <activity android:name=".chat.groupInfo.GroupInfoActivity" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
