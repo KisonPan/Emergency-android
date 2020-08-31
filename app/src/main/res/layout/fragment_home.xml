@@ -1,18 +1,25 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray_color"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <com.tencent.qcloud.tim.uikit.component.TitleBarLayout
         android:id="@+id/home_title_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/home_title_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -68,53 +75,70 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="30dp"
-                    android:paddingBottom="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:background="@drawable/corner_white">
 
-                    <Button
-                        android:id="@+id/btn_baidu_map"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="15dp"
-                        android:background="@drawable/round_green"
-                        android:text="@string/test_map"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:visibility="gone"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/btn_baidu_map"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/round_green"
+                            android:text="@string/test_map"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:visibility="gone"/>
 
-                    <Button
-                        android:id="@+id/btn_110_dial"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="15dp"
-                        android:background="@drawable/round_green"
-                        android:text="@string/s110"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-                    <Button
-                        android:id="@+id/btn_119_dial"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="15dp"
-                        android:background="@drawable/round_green"
-                        android:text="@string/s119"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-                    <Button
-                        android:id="@+id/btn_120_dial"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="15dp"
-                        android:background="@drawable/round_green"
-                        android:text="@string/s120"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        <Button
+                            android:id="@+id/btn_110_dial"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/round_green"
+                            android:text="@string/s110"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <Button
+                            android:id="@+id/btn_119_dial"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginLeft="60dp"
+                            android:background="@drawable/round_green"
+                            android:text="@string/s119"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="30dp">
+                        <Button
+                            android:id="@+id/btn_120_dial"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/round_green"
+                            android:text="@string/s120"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <Button
+                            android:id="@+id/btn_122_dial"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginLeft="60dp"
+                            android:background="@drawable/round_green"
+                            android:text="@string/s122"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -152,5 +176,26 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="10dp"
+        android:gravity="center">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gongsi"
+            android:textColor="@color/main_gray"
+            android:textSize="14sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/author"
+            android:textColor="@color/main_gray"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
