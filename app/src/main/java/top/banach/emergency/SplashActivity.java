@@ -24,38 +24,39 @@ public class SplashActivity extends Activity {
 
     private static final String TAG = SplashActivity.class.getSimpleName();
     private static final int SPLASH_TIME = 1000;
-    private View mFlashView;
+//    private View mFlashView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+//        setContentView(R.layout.activity_splash);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
-        mFlashView = findViewById(R.id.flash_view);
-        handleData();
+//        mFlashView = findViewById(R.id.flash_view);
+//        handleData();
+        startLogin();
     }
 
-    private void handleData() {
-        mFlashView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startLogin();
-            }
-        }, SPLASH_TIME);
-    }
+//    private void handleData() {
+//        mFlashView.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                startLogin();
+//            }
+//        }, SPLASH_TIME);
+//    }
 
     private void startLogin() {
         String lastLoginDate = SPUtils.getString(getApplicationContext(), C.Key.LAST_LOGIN_DATE, null);
         LogUtils.i(TAG, "lastLoginDate:" + lastLoginDate);
         if (lastLoginDate!= null) {
-            boolean isExpire = DateUtil.isOverForHours(lastLoginDate, 7*24);
-            if (!isExpire) {
+//            boolean isExpire = DateUtil.isOverForHours(lastLoginDate, 7*24);
+//            if (!isExpire) {
                 autoLogin();
                 return;
-            }
+//            }
         }
 
         startLoginActivity();
