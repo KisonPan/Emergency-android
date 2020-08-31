@@ -21,6 +21,7 @@ import java.util.Set;
 public class Api {
 
     private static String cid;
+    private static final String TAG = "Banach";
 
 //    //get方法
 //    public static void okhttp_get(Context context, String httpUrl, Callback callback) {
@@ -32,7 +33,7 @@ public class Api {
 //
 ////        Long timestamp = new Date().getTime();
 //        Long timestamp = System.currentTimeMillis();
-//        Log.i(context.getClass().getName(), "[get] httpUrl= " + httpUrl);
+//        Log.i(TAG, "[get] httpUrl= " + httpUrl);
 //
 //        OkHttpClient client = new OkHttpClient();
 //        Request request = new Request.Builder()
@@ -54,7 +55,7 @@ public class Api {
         }
 
         Long timestamp = System.currentTimeMillis();
-        Log.i(context.getClass().getName(), "[get] httpUrl= " + httpUrl);
+        Log.i(TAG, "[get] httpUrl= " + httpUrl);
 
         OkHttpUtils.get(httpUrl)
                 .headers("timestamp", timestamp.toString())
@@ -71,12 +72,12 @@ public class Api {
         }
 
         Long timestamp = System.currentTimeMillis();
-        Log.i(context.getClass().getName(), "[get] httpUrl= " + httpUrl);
+        Log.i(TAG, "[get] httpUrl= " + httpUrl);
 
         Set<String> keySet = paramsMap.keySet();
         for (String key:keySet) {
             String value = paramsMap.get(key);
-            Log.i(context.getClass().getName(), "[get params data] " + key + "=" + value);
+            Log.i(TAG, "[get params data] " + key + "=" + value);
         }
 
         OkHttpUtils.get(httpUrl)
@@ -96,12 +97,12 @@ public class Api {
         }
 
         Long timestamp = System.currentTimeMillis();
-        Log.i(context.getClass().getName(), "[post] httpUrl= " + httpUrl);
+        Log.i(TAG, "[post] httpUrl= " + httpUrl);
 
         Set<String> keySet = paramsMap.keySet();
         for (String key:keySet) {
             String value = paramsMap.get(key);
-            Log.i(context.getClass().getName(), "[post data] " + key + "=" + value);
+            Log.i(TAG, "[post data] " + key + "=" + value);
         }
 
         OkHttpUtils.post(httpUrl)
@@ -123,12 +124,12 @@ public class Api {
         }
 
         Long timestamp = System.currentTimeMillis();
-        Log.i(context.getClass().getName(), "[post] httpUrl= " + httpUrl);
+        Log.i(TAG, "[post] httpUrl= " + httpUrl);
 
 //        Set<String> keySet = paramsMap.keySet();
 //        for (String key:keySet) {
 //            String value = paramsMap.get(key);
-//            Log.i(context.getClass().getName(), "[post data] " + key + "=" + value);
+//            Log.i(TAG, "[post data] " + key + "=" + value);
 //        }
 
         LogUtils.i(context.getClass().getName(), "[post data] " + "=" + jsonInBody);
@@ -155,7 +156,7 @@ public class Api {
         }
 
         Long timestamp = System.currentTimeMillis();
-        Log.i(context.getClass().getName(), "[post] httpUrl= " + httpUrl);
+        Log.i(TAG, "[post] httpUrl= " + httpUrl);
 
         LogUtils.i(context.getClass().getName(), "[post data] " + "=" + imageStr);
 
@@ -202,12 +203,12 @@ public class Api {
         }
 
         Long timestamp = System.currentTimeMillis();
-        Log.i(context.getClass().getName(), "[post] httpUrl= " + httpUrl);
+        Log.i(TAG, "[post] httpUrl= " + httpUrl);
 
         Set<String> keySet = paramsMap.keySet();
         for (String key:keySet) {
             String value = paramsMap.get(key);
-            Log.i(context.getClass().getName(), "[post data] " + key + "=" + value);
+            Log.i(TAG, "[post data] " + key + "=" + value);
         }
 
         OkHttpUtils.put(httpUrl)
