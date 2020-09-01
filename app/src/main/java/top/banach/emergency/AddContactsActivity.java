@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.tencent.qcloud.tim.uikit.component.TitleBarLayout;
 import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 
 import top.banach.emergency.api.Api;
@@ -21,6 +22,7 @@ public class AddContactsActivity extends BaseActivity {
     private EditText etPhoneNo;
     private Button btnSave;
     private LoadingDialog loadingDialog;
+    private TitleBarLayout titleBarLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,7 @@ public class AddContactsActivity extends BaseActivity {
 
         initData();
         initView();
+        initTitleBar();
 
     }
 
@@ -87,6 +90,20 @@ public class AddContactsActivity extends BaseActivity {
                 loadingDialog.loadFailed();
             }
         });
+    }
+
+    private void initTitleBar() {
+        titleBarLayout = findViewById(R.id.home_title_bar);
+        titleBarLayout.setTitle(
+                getResources().getString(R.string.addContacts),
+                TitleBarLayout.POSITION.MIDDLE);
+        titleBarLayout.setOnLeftClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddContactsActivity.this.finish();
+            }
+        });
+        titleBarLayout.getRightIcon().setVisibility(View.GONE);
     }
 
 

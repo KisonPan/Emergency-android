@@ -39,7 +39,7 @@ public class DialogUtils {
                         listener.onNegativeClick(dialog);
                     }
                 })
-                .create();
+                .show();
     }
 
     public interface OnDialogClickListener {

@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.tencent.imsdk.TIMConversationType;
 import top.banach.emergency.BaseActivity;
-import top.banach.emergency.DemoApplication;
+import top.banach.emergency.BanachApplication;
 import top.banach.emergency.R;
 import top.banach.emergency.chat.ChatActivity;
 import top.banach.emergency.menu.AddMoreActivity;
@@ -53,7 +53,7 @@ public class GroupListActivity extends BaseActivity {
         mTitleBar.setOnRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DemoApplication.instance(), AddMoreActivity.class);
+                Intent intent = new Intent(BanachApplication.instance(), AddMoreActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("isGroup", true);
                 startActivity(intent);

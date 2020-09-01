@@ -3,7 +3,6 @@ package top.banach.emergency.conversation;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import android.text.Editable;
@@ -17,7 +16,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.tencent.imsdk.TIMConversationType;
-import top.banach.emergency.DemoApplication;
+import top.banach.emergency.BanachApplication;
 import top.banach.emergency.R;
 import top.banach.emergency.chat.ChatActivity;
 import top.banach.emergency.menu.Menu;
@@ -39,10 +38,7 @@ import com.tencent.qcloud.tim.uikit.utils.PopWindowUtil;
 import com.tencent.qcloud.tim.uikit.utils.ToastUtil;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 
 public class ConversationFragment extends BaseFragment {
@@ -139,7 +135,12 @@ public class ConversationFragment extends BaseFragment {
         titleBarLayout.setTitle(
                 getResources().getString(R.string.tab_conversation_tab_text),
                 TitleBarLayout.POSITION.MIDDLE);
-        titleBarLayout.getLeftGroup().setVisibility(View.GONE);
+        titleBarLayout.setOnLeftClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
         titleBarLayout.setRightIcon(R.drawable.conversation_more);
 
         titleBarLayout.setOnRightClickListener(new View.OnClickListener() {
@@ -237,10 +238,10 @@ public class ConversationFragment extends BaseFragment {
         chatInfo.setType(conversationInfo.isGroup() ? TIMConversationType.Group : TIMConversationType.C2C);
         chatInfo.setId(conversationInfo.getId());
         chatInfo.setChatName(conversationInfo.getTitle());
-        Intent intent = new Intent(DemoApplication.instance(), ChatActivity.class);
+        Intent intent = new Intent(BanachApplication.instance(), ChatActivity.class);
         intent.putExtra(Constants.CHAT_INFO, chatInfo);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        DemoApplication.instance().startActivity(intent);
+        BanachApplication.instance().startActivity(intent);
     }
 
 }

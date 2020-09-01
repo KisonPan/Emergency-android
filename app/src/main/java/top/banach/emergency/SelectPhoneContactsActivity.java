@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tencent.qcloud.tim.uikit.component.TitleBarLayout;
 import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 
 import org.json.JSONArray;
@@ -50,9 +51,10 @@ public class SelectPhoneContactsActivity extends BaseActivity {
     private List<EmergencyContactItemBean> listSeleted;
     private List<EmergencyContactItemBean> listSearchResult;
     private ContactAdapter adapter;
-    private Button btnAdd;
+//    private Button btnAdd;
     private EditText etSearch;
     private LoadingDialog loadingDialog;
+    private TitleBarLayout titleBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class SelectPhoneContactsActivity extends BaseActivity {
 
         initData();
         initView();
+        initTitleBar();
     }
 
     private void initData() {
@@ -85,6 +88,7 @@ public class SelectPhoneContactsActivity extends BaseActivity {
         }else {
             readContacts();
         }
+
     }
 
     private void initView() {
@@ -92,17 +96,17 @@ public class SelectPhoneContactsActivity extends BaseActivity {
         ListView contactsView = (ListView) findViewById(R.id.contacts_view);
         contactsView.setAdapter(adapter);
 
-        btnAdd = findViewById(R.id.btn_add);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                listContacts.addAll(listSeleted);
-                JSONArray arr = listToJSONArray(listSeleted);
-                String contacts = arr.toString();
-                LogUtils.i(C.tag, contacts);
-                addContacts(contacts);
-            }
-        });
+//        btnAdd = findViewById(R.id.btn_add);
+//        btnAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                listContacts.addAll(listSeleted);
+//                JSONArray arr = listToJSONArray(listSeleted);
+//                String contacts = arr.toString();
+//                LogUtils.i(C.tag, contacts);
+//                addContacts(contacts);
+//            }
+//        });
 
         etSearch = findViewById(R.id.et_search);
         etSearch.addTextChangedListener(new TextWatcher() {
@@ -130,6 +134,30 @@ public class SelectPhoneContactsActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private void initTitleBar() {
+        titleBarLayout = findViewById(R.id.home_title_bar);
+        titleBarLayout.setTitle(
+                getResources().getString(R.string.addContacts),
+                TitleBarLayout.POSITION.MIDDLE);
+        titleBarLayout.setOnLeftClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SelectPhoneContactsActivity.this.finish();
+            }
+        });
+        titleBarLayout.setRightIcon(R.drawable.ok_normal);
+        titleBarLayout.getRightIcon().setVisibility(View.GONE);
+        titleBarLayout.setOnRightClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JSONArray arr = listToJSONArray(listSeleted);
+                String contacts = arr.toString();
+                LogUtils.i(C.tag, contacts);
+                addContacts(contacts);
+            }
+        });
     }
 
     private void addContacts(String contactJson) {
@@ -311,9 +339,11 @@ public class SelectPhoneContactsActivity extends BaseActivity {
 
         private void updateBtnAddVisible() {
             if (listSeleted != null && listSeleted.size() >0) {
-                btnAdd.setVisibility(View.VISIBLE);
+//                btnAdd.setVisibility(View.VISIBLE);
+                titleBarLayout.getRightIcon().setVisibility(View.VISIBLE);
             } else {
-                btnAdd.setVisibility(View.INVISIBLE);
+//                btnAdd.setVisibility(View.INVISIBLE);
+                titleBarLayout.getRightIcon().setVisibility(View.INVISIBLE);
             }
         }
 

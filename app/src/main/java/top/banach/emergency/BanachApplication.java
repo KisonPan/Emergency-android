@@ -2,7 +2,6 @@ package top.banach.emergency;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -35,8 +34,6 @@ import top.banach.emergency.thirdpush.ThirdPushTokenMgr;
 import top.banach.emergency.utils.DemoLog;
 import top.banach.emergency.utils.PrivateConstants;
 
-import top.banach.emergency.BuildConfig;
-import top.banach.emergency.R;
 import com.tencent.qcloud.tim.uikit.TUIKit;
 import com.tencent.qcloud.tim.uikit.base.IMEventListener;
 import com.vivo.push.PushClient;
@@ -46,13 +43,13 @@ import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 
 import java.util.List;
 
-public class DemoApplication extends Application {
+public class BanachApplication extends Application {
 
-    private static final String TAG = DemoApplication.class.getSimpleName();
+    private static final String TAG = BanachApplication.class.getSimpleName();
 
-    private static DemoApplication instance;
+    private static BanachApplication instance;
 
-    public static DemoApplication instance() {
+    public static BanachApplication instance() {
         return instance;
     }
 
@@ -143,8 +140,8 @@ public class DemoApplication extends Application {
             public void onNewMessages(List<TIMMessage> msgs) {
                 for (TIMMessage msg : msgs) {
                     // 小米手机需要在设置里面把demo的"后台弹出权限"打开才能点击Notification跳转。TIMOfflinePushNotification后续不再维护，如有需要，建议应用自己调用系统api弹通知栏消息。
-                    TIMOfflinePushNotification notification = new TIMOfflinePushNotification(DemoApplication.this, msg);
-                    notification.doNotify(DemoApplication.this, R.drawable.default_user_icon);
+                    TIMOfflinePushNotification notification = new TIMOfflinePushNotification(BanachApplication.this, msg);
+                    notification.doNotify(BanachApplication.this, R.drawable.default_user_icon);
                 }
             }
         };

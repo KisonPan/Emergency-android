@@ -16,6 +16,6 @@ public class Urls {
     public static final String CONTACT = BASE_URL + "/app/contact";
     public static final String SOS = BASE_URL + "/app/sos";
     public static final String STOP_SOS = BASE_URL + "/app/sos";
-    public static final String CHECK_VERSION = BASE_URL + "/app/checkVersion";
+    public static final String CHECK_VERSION = BASE_URL + "/app/checkVersion/"; //https://app.banach.top/app/checkVersion/2.0.4/
     public static final String ADS = BASE_URL + "/app/ads/";
 }

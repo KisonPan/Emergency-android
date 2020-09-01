@@ -150,7 +150,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         titleBarLayout.setTitle(
                 getResources().getString(R.string.tab_main_tab_text),
                 TitleBarLayout.POSITION.MIDDLE);
-        titleBarLayout.getLeftGroup().setVisibility(View.GONE);
+        titleBarLayout.setOnLeftClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
         titleBarLayout.getRightIcon().setVisibility(View.GONE);
     }
 

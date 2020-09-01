@@ -113,20 +113,20 @@ dependencies {
     // MEIZU push sdk
     implementation 'com.meizu.flyme.internet:push-internal:3.6.+@aar'
     // google firebase
-    implementation('com.google.firebase:firebase-core:17.0.0') {
+    implementation('com.google.firebase:firebase-core:17.5.0') {
         exclude group: 'androidx.core', module: 'core'
     }
     // google 云消息传递
-    implementation('com.google.firebase:firebase-messaging:19.0.1') {
+    implementation('com.google.firebase:firebase-messaging:20.2.4') {
         exclude group: 'androidx.core', module: 'core'
     }
     // bugly sdk
-    implementation 'com.tencent.bugly:crashreport:latest.release'
-    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
-    implementation 'org.bouncycastle:bcpkix-jdk15on:1.59'
+    implementation 'com.tencent.bugly:crashreport:3.2.33'
+    implementation 'com.tencent.bugly:nativecrashreport:3.7.471'
+    implementation 'org.bouncycastle:bcpkix-jdk15on:1.60'
     //    implementation 'com.tencent.imsdk:tuikit:4.5.111'
     // implementation project(':tuikit')
-    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.3.1'
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'

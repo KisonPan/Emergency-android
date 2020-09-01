@@ -3,7 +3,7 @@ package top.banach.emergency.utils;
 public class PrivateConstants {
 
     // bugly上报
-    public static final String BUGLY_APPID = "";
+    public static final String BUGLY_APPID = "fdf3166235";
 
     /****** 华为离线推送参数start ******/
     // 在腾讯云控制台上传第三方推送证书后分配的证书ID

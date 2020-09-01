@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.tencent.imsdk.TIMCustomElem;
-import top.banach.emergency.DemoApplication;
+import top.banach.emergency.BanachApplication;
 import top.banach.emergency.R;
 import top.banach.emergency.utils.DemoLog;
 
@@ -241,7 +241,7 @@ public class ChatLayoutHelper {
             }
 
             // 把自定义消息view添加到TUIKit内部的父容器里
-            View view = LayoutInflater.from(DemoApplication.instance()).inflate(R.layout.test_custom_message_layout1, null, false);
+            View view = LayoutInflater.from(BanachApplication.instance()).inflate(R.layout.test_custom_message_layout1, null, false);
             parent.addMessageContentView(view);
 
             // 自定义消息view的实现，这里仅仅展示文本信息，并且实现超链接跳转
@@ -267,7 +267,7 @@ public class ChatLayoutHelper {
                     Uri content_url = Uri.parse(customMessageData.link);
                     intent.setData(content_url);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    DemoApplication.instance().startActivity(intent);
+                    BanachApplication.instance().startActivity(intent);
                 }
             });
         }

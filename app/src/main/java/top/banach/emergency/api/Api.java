@@ -278,7 +278,7 @@ public class Api {
     }
 
     public static void getCheckUpdate(Context context, String version, StringCallBack.HttpCallBack callback) {
-        httpGet(context, Urls.CHECK_VERSION + "?version=" + version, callback);
+        httpGet(context, Urls.CHECK_VERSION  + version + "/", callback);
     }
 
     public static void sos(Context context, String type, float lat, float lng, StringCallBack.HttpCallBack callback) {

@@ -8,7 +8,7 @@ import android.view.View;
 import com.tencent.imsdk.TIMConversationType;
 import com.tencent.imsdk.TIMManager;
 import top.banach.emergency.BaseActivity;
-import top.banach.emergency.DemoApplication;
+import top.banach.emergency.BanachApplication;
 import top.banach.emergency.R;
 import top.banach.emergency.chat.ChatActivity;
 import top.banach.emergency.utils.Constants;
@@ -177,10 +177,10 @@ public class StartGroupChatActivity extends BaseActivity {
                 chatInfo.setType(TIMConversationType.Group);
                 chatInfo.setId(data.toString());
                 chatInfo.setChatName(groupInfo.getGroupName());
-                Intent intent = new Intent(DemoApplication.instance(), ChatActivity.class);
+                Intent intent = new Intent(BanachApplication.instance(), ChatActivity.class);
                 intent.putExtra(Constants.CHAT_INFO, chatInfo);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                DemoApplication.instance().startActivity(intent);
+                BanachApplication.instance().startActivity(intent);
                 finish();
             }
 

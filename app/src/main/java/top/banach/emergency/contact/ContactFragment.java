@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import top.banach.emergency.DemoApplication;
+import top.banach.emergency.BanachApplication;
 import top.banach.emergency.R;
 import top.banach.emergency.menu.Menu;
 import top.banach.emergency.utils.DemoLog;
@@ -51,26 +51,34 @@ public class ContactFragment extends BaseFragment {
 //                }
 //            }
 //        });
+
+        mContactLayout.getTitleBar().setOnLeftClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
+
         mContactLayout.getContactListView().setOnItemClickListener(new ContactListView.OnItemClickListener() {
             @Override
             public void onItemClick(int position, ContactItemBean contact) {
                 if (position == 0) {
-                    Intent intent = new Intent(DemoApplication.instance(), NewFriendActivity.class);
+                    Intent intent = new Intent(BanachApplication.instance(), NewFriendActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    DemoApplication.instance().startActivity(intent);
+                    BanachApplication.instance().startActivity(intent);
                 } else if (position == 1) {
-                    Intent intent = new Intent(DemoApplication.instance(), GroupListActivity.class);
+                    Intent intent = new Intent(BanachApplication.instance(), GroupListActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    DemoApplication.instance().startActivity(intent);
+                    BanachApplication.instance().startActivity(intent);
                 } else if (position == 2) {
-                    Intent intent = new Intent(DemoApplication.instance(), BlackListActivity.class);
+                    Intent intent = new Intent(BanachApplication.instance(), BlackListActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    DemoApplication.instance().startActivity(intent);
+                    BanachApplication.instance().startActivity(intent);
                 } else {
-                    Intent intent = new Intent(DemoApplication.instance(), FriendProfileActivity.class);
+                    Intent intent = new Intent(BanachApplication.instance(), FriendProfileActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(TUIKitConstants.ProfileType.CONTENT, contact);
-                    DemoApplication.instance().startActivity(intent);
+                    BanachApplication.instance().startActivity(intent);
                 }
             }
         });

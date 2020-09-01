@@ -1,12 +1,9 @@
 package top.banach.emergency;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
@@ -35,7 +32,7 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
         @Override
         public void onForceOffline() {
             ToastUtil.toastLongMessage("您的帐号已在其它终端登录");
-            logout(DemoApplication.instance(), false);
+            logout(BanachApplication.instance(), false);
         }
     };
 

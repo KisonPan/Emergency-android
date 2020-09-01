@@ -18,7 +18,7 @@ import com.tencent.imsdk.friendship.TIMFriendPendencyItem;
 import com.tencent.imsdk.friendship.TIMFriendResponse;
 import com.tencent.imsdk.friendship.TIMFriendResult;
 import com.tencent.imsdk.friendship.TIMPendencyType;
-import top.banach.emergency.DemoApplication;
+import top.banach.emergency.BanachApplication;
 import top.banach.emergency.R;
 import top.banach.emergency.utils.DemoLog;
 import com.tencent.qcloud.tim.uikit.component.CircleImageView;
@@ -64,10 +64,10 @@ public class NewFriendListAdapter extends ArrayAdapter<TIMFriendPendencyItem> {
             mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(DemoApplication.instance(), FriendProfileActivity.class);
+                    Intent intent = new Intent(BanachApplication.instance(), FriendProfileActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(TUIKitConstants.ProfileType.CONTENT, data);
-                    DemoApplication.instance().startActivity(intent);
+                    BanachApplication.instance().startActivity(intent);
                 }
             });
             mViewHolder = new ViewHolder();

@@ -3,34 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
+    <com.tencent.qcloud.tim.uikit.component.TitleBarLayout
+        android:id="@+id/home_title_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical" >
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:padding="6dp"
-            android:text="@string/addContacts"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_textsize" />
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/edit"
-            android:textColor="@color/bt_pass_color"
-            android:textSize="14sp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:padding="10dp"/>
-    </RelativeLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

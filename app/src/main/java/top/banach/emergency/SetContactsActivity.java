@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.tencent.qcloud.tim.uikit.component.TitleBarLayout;
 import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 
 import org.json.JSONArray;
@@ -41,9 +42,11 @@ public class SetContactsActivity extends BaseActivity {
     private ContactAdapter adapter;
     private List<EmergencyContactItemBean> emergencyContactsList;
 //    private Button btnSave;
-    private Button btnAdd;
+//    private Button btnAdd;
     private TextView tvTips;
     private LoadingDialog loadingDialog;
+    private TitleBarLayout titleBarLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,7 @@ public class SetContactsActivity extends BaseActivity {
 
         initData();
         initView();
+        initTitleBar();
         requestDatas();
     }
 
@@ -81,8 +85,8 @@ public class SetContactsActivity extends BaseActivity {
 
     private void initView() {
         tvTips = (TextView)findViewById(R.id.tv_tips);
-        btnAdd = (Button)findViewById(R.id.btn_add);
-        btnAdd.setOnClickListener(this);
+//        btnAdd = (Button)findViewById(R.id.btn_add);
+//        btnAdd.setOnClickListener(this);
         lvContacts = (ListView)findViewById(R.id.lvContacts);
         lvContacts.setAdapter(adapter);
 
@@ -98,6 +102,44 @@ public class SetContactsActivity extends BaseActivity {
 //                SetContactsActivity.this.startActivity(intent);
 //            }
 //        });
+    }
+
+    private void initTitleBar() {
+        titleBarLayout = findViewById(R.id.home_title_bar);
+        titleBarLayout.setTitle(
+                getResources().getString(R.string.contacts),
+                TitleBarLayout.POSITION.MIDDLE);
+        titleBarLayout.setOnLeftClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SetContactsActivity.this.finish();
+            }
+        });
+        titleBarLayout.setRightIcon(R.drawable.conversation_more);
+        titleBarLayout.setOnRightClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String[] items = {"手工输入","从通讯录中获取"};
+                DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent;
+                        switch (which) {
+                            case 0:
+                                intent = new Intent(SetContactsActivity.this, AddContactsActivity.class);
+                                startActivity(intent);
+                                break;
+                            case 1:
+                                intent = new Intent(SetContactsActivity.this, SelectPhoneContactsActivity.class);
+                                startActivity(intent);
+                                break;
+                        }
+                    }
+                };
+
+                DialogUtils.showListDialog(SetContactsActivity.this, "添加方式", items, listener);
+            }
+        });
     }
     
     private void requestDatas() {
@@ -183,28 +225,28 @@ public class SetContactsActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_add:
-                String[] items = {"手工输入","从通讯录中获取"};
-                DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                            Intent intent;
-                            switch (which) {
-                                case 0:
-                                    intent = new Intent(SetContactsActivity.this, AddContactsActivity.class);
-                                    startActivity(intent);
-                                    break;
-                                case 1:
-                                    intent = new Intent(SetContactsActivity.this, SelectPhoneContactsActivity.class);
-                                    startActivity(intent);
-                                    break;
-                            }
-                    }
-                };
-
-                DialogUtils.showListDialog(SetContactsActivity.this, "添加方式", items, listener);
-
-                break;
+//            case R.id.btn_add:
+//                String[] items = {"手工输入","从通讯录中获取"};
+//                DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                            Intent intent;
+//                            switch (which) {
+//                                case 0:
+//                                    intent = new Intent(SetContactsActivity.this, AddContactsActivity.class);
+//                                    startActivity(intent);
+//                                    break;
+//                                case 1:
+//                                    intent = new Intent(SetContactsActivity.this, SelectPhoneContactsActivity.class);
+//                                    startActivity(intent);
+//                                    break;
+//                            }
+//                    }
+//                };
+//
+//                DialogUtils.showListDialog(SetContactsActivity.this, "添加方式", items, listener);
+//
+//                break;
 
             default:
                 break;

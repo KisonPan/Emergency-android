@@ -1,8 +1,5 @@
 package top.banach.emergency.profile;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -14,21 +11,17 @@ import androidx.annotation.Nullable;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
-import com.luck.picture.lib.entity.LocalMedia;
 import com.tencent.imsdk.TIMCallBack;
 import com.tencent.imsdk.TIMManager;
 import top.banach.emergency.BaseActivity;
-import top.banach.emergency.DemoApplication;
+import top.banach.emergency.BanachApplication;
 import top.banach.emergency.R;
-import top.banach.emergency.utils.LogUtils;
 import top.banach.emergency.widget.GlideEngine;
 
 import com.tencent.qcloud.tim.uikit.TUIKit;
 import com.tencent.qcloud.tim.uikit.base.BaseFragment;
 import com.tencent.qcloud.tim.uikit.component.dialog.TUIKitDialog;
 import com.tencent.qcloud.tim.uikit.utils.ToastUtil;
-
-import java.util.List;
 
 
 public class ProfileFragment extends BaseFragment {
@@ -68,7 +61,7 @@ public class ProfileFragment extends BaseFragment {
 
                                     @Override
                                     public void onSuccess() {
-                                        BaseActivity.logout(DemoApplication.instance(), false);
+                                        BaseActivity.logout(BanachApplication.instance(), false);
                                         TUIKit.unInit();
                                         if (getActivity() != null) {
                                             getActivity().finish();
@@ -101,6 +94,13 @@ public class ProfileFragment extends BaseFragment {
                         .compressQuality(50)
                         .minimumCompressSize(100)
                         .forResult(PictureConfig.CHOOSE_REQUEST);
+            }
+        });
+
+        mProfileLayout.getTitleBar().setOnLeftClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 

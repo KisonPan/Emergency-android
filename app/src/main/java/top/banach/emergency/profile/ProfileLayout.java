@@ -92,7 +92,7 @@ public class ProfileLayout extends LinearLayout implements View.OnClickListener 
         mAccountView = findViewById(R.id.self_account);
 
         mTitleBar = findViewById(R.id.self_info_title_bar);
-        mTitleBar.getLeftGroup().setVisibility(GONE);
+//        mTitleBar.getLeftGroup().setVisibility(GONE);
         mTitleBar.getRightGroup().setVisibility(GONE);
         mTitleBar.setTitle(getResources().getString(R.string.profile), TitleBarLayout.POSITION.MIDDLE);
 
@@ -204,6 +204,10 @@ public class ProfileLayout extends LinearLayout implements View.OnClickListener 
             Intent intent = new Intent((Activity) getContext(), WebViewActivity.class);
             ((Activity) getContext()).startActivity(intent);
         }
+    }
+
+    public TitleBarLayout getTitleBar() {
+        return mTitleBar;
     }
 
     private void updateProfile() {

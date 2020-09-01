@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tencent.imsdk.TIMConversationType;
-import top.banach.emergency.DemoApplication;
+import top.banach.emergency.BanachApplication;
 import top.banach.emergency.R;
 import top.banach.emergency.constants.C;
 import top.banach.emergency.contact.FriendProfileActivity;
@@ -100,10 +100,10 @@ public class ChatFragment extends BaseFragment {
             mTitleBar.setOnRightClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(DemoApplication.instance(), FriendProfileActivity.class);
+                    Intent intent = new Intent(BanachApplication.instance(), FriendProfileActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(TUIKitConstants.ProfileType.CONTENT, mChatInfo);
-                    DemoApplication.instance().startActivity(intent);
+                    BanachApplication.instance().startActivity(intent);
                 }
             });
         }
@@ -121,10 +121,10 @@ public class ChatFragment extends BaseFragment {
                 }
                 ChatInfo info = new ChatInfo();
                 info.setId(messageInfo.getFromUser());
-                Intent intent = new Intent(DemoApplication.instance(), FriendProfileActivity.class);
+                Intent intent = new Intent(BanachApplication.instance(), FriendProfileActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(TUIKitConstants.ProfileType.CONTENT, info);
-                DemoApplication.instance().startActivity(intent);
+                BanachApplication.instance().startActivity(intent);
             }
         });
     }

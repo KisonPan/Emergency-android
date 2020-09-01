@@ -3,23 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".AddContactsActivity">
-    <RelativeLayout
-        android:layout_width="fill_parent"
+    <com.tencent.qcloud.tim.uikit.component.TitleBarLayout
+        android:id="@+id/home_title_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical" >
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:padding="6dp"
-            android:text="@string/addContacts"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_textsize" />
-    </RelativeLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <LinearLayout
         android:layout_width="match_parent"

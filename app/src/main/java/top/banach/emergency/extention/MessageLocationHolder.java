@@ -10,12 +10,11 @@ import android.widget.TextView;
 
 import com.tencent.imsdk.TIMLocationElem;
 
-import top.banach.emergency.DemoApplication;
+import top.banach.emergency.BanachApplication;
 import top.banach.emergency.R;
 import top.banach.emergency.chat.ShowLocationActivity;
 import top.banach.emergency.constants.C;
 
-import com.tencent.qcloud.tim.uikit.TUIKit;
 import com.tencent.qcloud.tim.uikit.component.face.FaceManager;
 import com.tencent.qcloud.tim.uikit.modules.chat.layout.message.holder.MessageContentHolder;
 import com.tencent.qcloud.tim.uikit.modules.message.MessageInfo;
@@ -78,7 +77,7 @@ public class MessageLocationHolder extends MessageContentHolder {
             llLocation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(DemoApplication.instance().getApplicationContext(), ShowLocationActivity.class);
+                    Intent intent = new Intent(BanachApplication.instance().getApplicationContext(), ShowLocationActivity.class);
                     Bundle bundle = new Bundle();
 
                     bundle.putString(C.params.latitude, latitude);
@@ -88,7 +87,7 @@ public class MessageLocationHolder extends MessageContentHolder {
 
                     intent.putExtras(bundle);
                     intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-                    DemoApplication.instance().getApplicationContext().startActivity(intent);
+                    BanachApplication.instance().getApplicationContext().startActivity(intent);
                 }
             });
         }

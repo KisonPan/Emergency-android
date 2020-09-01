@@ -14,7 +14,7 @@ import com.tencent.imsdk.friendship.TIMFriendPendencyRequest;
 import com.tencent.imsdk.friendship.TIMFriendPendencyResponse;
 import com.tencent.imsdk.friendship.TIMPendencyType;
 import top.banach.emergency.BaseActivity;
-import top.banach.emergency.DemoApplication;
+import top.banach.emergency.BanachApplication;
 import top.banach.emergency.R;
 import top.banach.emergency.menu.AddMoreActivity;
 import top.banach.emergency.utils.DemoLog;
@@ -61,7 +61,7 @@ public class NewFriendActivity extends BaseActivity {
         mTitleBar.setOnRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DemoApplication.instance(), AddMoreActivity.class);
+                Intent intent = new Intent(BanachApplication.instance(), AddMoreActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("isGroup", false);
                 startActivity(intent);

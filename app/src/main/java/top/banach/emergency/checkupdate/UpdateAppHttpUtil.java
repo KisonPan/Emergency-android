@@ -49,17 +49,18 @@ public class UpdateAppHttpUtil implements HttpManager {
 //        String checkResult = StringUtil.replace(strResult);
 //        callBack.onResponse(checkResult);
 
-        Log.i("TAG", "----asyncGet----");
-        Api.httpGet(context, url, params, new StringCallBack.HttpCallBack() {
+        Log.i(TAG, "----asyncGet----");
+//        Api.httpGet(context, url, params, new StringCallBack.HttpCallBack() {
+        Api.getCheckUpdate(context, params.get("version"), new StringCallBack.HttpCallBack() {
             @Override
             public void httpSucc(String result, Object request) {
-                Log.i("TAG", "----asyncGet-httpSucc---");
+                Log.i(TAG, "----asyncGet-httpSucc---" + result);
                 callBack.onResponse(result);
             }
 
             @Override
             public void httpfalse(String result) {
-                Log.i("TAG", "----asyncGet-httpfalse---" + result);
+                Log.i(TAG, "----asyncGet-httpfalse---" + result);
                 callBack.onError(result);
             }
         });
@@ -75,17 +76,17 @@ public class UpdateAppHttpUtil implements HttpManager {
      */
     @Override
     public void asyncPost(@NonNull String url, @NonNull Map<String, String> params, @NonNull final Callback callBack) {
-        Log.i("TAG", "----httpSucc----");
+        Log.i(TAG, "----httpSucc----");
         Api.httpPost(context, url, params, new StringCallBack.HttpCallBack() {
             @Override
             public void httpSucc(String result, Object request) {
-                Log.i("TAG", "----httpSucc-httpfalse---");
+                Log.i(TAG, "----httpSucc-httpfalse---");
                 callBack.onResponse(result);
             }
 
             @Override
             public void httpfalse(String result) {
-                Log.i("TAG", "----asyncPost-httpfalse---");
+                Log.i(TAG, "----asyncPost-httpfalse---");
                 callBack.onError(result);
             }
         });
@@ -102,12 +103,12 @@ public class UpdateAppHttpUtil implements HttpManager {
      */
     @Override
     public void download(@NonNull String url, @NonNull String path, @NonNull String fileName, @NonNull final FileCallback callback) {
-        Log.i("TAG", "----httpSucc----");
+        Log.i(TAG, "----httpSucc----");
         HttpUtils.downloadFile(context, url, new com.lzy.okhttputils.callback.FileCallback(path, fileName) {
             @Override
             public void onResponse(boolean b, File file, Request request, Response response) {
 
-                Log.i("TAG", "----onResponse----");
+                Log.i(TAG, "----onResponse----");
                 callback.onResponse(file);
             }
 
