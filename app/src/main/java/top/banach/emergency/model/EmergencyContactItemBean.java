@@ -62,11 +62,17 @@ public class EmergencyContactItemBean {
     }
 
     public boolean containsWord(String keyword) {
-        if (mobile.contains(keyword)) {
-            return true;
+
+        if (mobile != null) {
+            if (mobile.contains(keyword)) {
+                return true;
+            }
         }
-        if (name.contains(keyword)) {
-            return true;
+
+        if (name != null) {
+            if (name.contains(keyword)) {
+                return true;
+            }
         }
 
         return false;

@@ -1,8 +1,11 @@
 package top.banach.emergency.home;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +18,8 @@ import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import top.banach.emergency.R;
@@ -30,6 +35,7 @@ import top.banach.emergency.utils.JSONUtil;
 import top.banach.emergency.utils.LogUtils;
 import top.banach.emergency.utils.SPUtils;
 
+import com.tencent.qcloud.tim.uikit.TUIKit;
 import com.tencent.qcloud.tim.uikit.base.BaseFragment;
 import com.tencent.qcloud.tim.uikit.component.TitleBarLayout;
 import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
@@ -47,6 +53,7 @@ import java.util.List;
 public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
     private static final String TAG = "HomeFragment";
+    private static final int REQ_PERMISSION_CODE = 0x100;
     private ArrayList<Integer> imagePath;
     private ArrayList<String> imageTitle;
 
@@ -72,8 +79,56 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private float yAixs = 113.1223f;
 
     private LoadingDialog loadingDialog;
-//    private Boolean isHelping = false;
     private TitleBarLayout titleBarLayout;
+
+
+    public static final int REQUEST_CALL_PERMISSION = 10111; //拨号请求码
+
+    /**
+     * 判断是否有某项权限
+     * @param string_permission 权限
+     * @param request_code 请求码
+     * @return
+     */
+    public boolean checkReadPermission(String string_permission,int request_code) {
+        boolean flag = false;
+        if (ContextCompat.checkSelfPermission(getActivity(), string_permission) == PackageManager.PERMISSION_GRANTED) {//已有权限
+            flag = true;
+        } else {//申请权限
+            ActivityCompat.requestPermissions(getActivity(), new String[]{string_permission}, request_code);
+        }
+        return flag;
+    }
+
+    /**
+     * 检查权限后的回调
+     * @param requestCode 请求码
+     * @param permissions  权限
+     * @param grantResults 结果
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CALL_PERMISSION: //拨打电话
+                if (permissions.length != 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {//失败
+                    Toast.makeText(getActivity(),"请允许拨号权限后再试",Toast.LENGTH_SHORT).show();
+                } else {//成功
+                    call("tel:"+"10086");
+                }
+                break;
+        }
+    }
+
+    /**
+     * 拨打电话（直接拨打）
+     * @param telPhone 电话
+     */
+    public void call(String telPhone){
+        if(checkReadPermission(Manifest.permission.CALL_PHONE,REQUEST_CALL_PERMISSION)){
+            Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:" + telPhone));
+            startActivity(intent);
+        }
+    }
 
 
     @Override
@@ -177,10 +232,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                         imageUrls.add(imgUrl);
                         titles.add(title);
                     }
-//                    imageUrls.add("https://img.zcool.cn/community/01c57958ec4165a8012049efdebbc3.jpg@1280w_1l_2o_100sh.jpg");
-//                    imageUrls.add("https://img.zcool.cn/community/01f32c58ec4165a8012049ef014222.jpg@1280w_1l_2o_100sh.jpg");
-//                    imageUrls.add("https://img.zcool.cn/community/01dd3c58ec4165a8012049efa94f3e.jpg@1280w_1l_2o_100sh.jpg");
-//                    imageUrls.add("https://img.zcool.cn/community/012d5058ed9899a8012049ef6b7d5c.jpg@1280w_1l_2o_100sh.jpg");
                     banner.setImages(imageUrls);
                     banner.setBannerTitles(titles);
                     banner.setOnBannerListener(new OnBannerListener() {
@@ -207,22 +258,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 Toast.makeText(getActivity(), "连接服务器失败！", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-//        Api.getCheckUpdate(getActivity(),"2.0.2", new StringCallBack.HttpCallBack() {
-//            @Override
-//            public void httpSucc(String result, Object request) {
-//                Log.i("Kison", "httpSucc----getCheckUpdate" + result + "----");
-//                Toast.makeText(getActivity(), "getCheckUpdate" + result, Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void httpfalse(String result) {
-//                Log.i("Kison", "httpfalse----getCheckUpdate" + result + "----");
-//                Toast.makeText(getActivity(), "getCheckUpdate" + result, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
     }
 
     private void sendEmergency() {
@@ -243,8 +278,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 String code = sosResultBean.getCode();
                 if (code!= null && code.equals("1")) {
                     SPUtils.putString(HomeFragment.this.getActivity().getApplicationContext(), C.Key.sos_id, id);
-//                    btnEmergency.setText(R.string.helping);
-//                    isHelping = true;
                     loadingDialog.loadSuccess();
                 } else {
                     loadingDialog.loadFailed();
@@ -271,8 +304,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 @Override
                 public void httpSucc(String result, Object request) {
                     SPUtils.remove(HomeFragment.this.getActivity().getApplicationContext(), C.Key.sos_id);
-//                    btnEmergency.setText(R.string.one_key_emergency);
-//                    isHelping = false;
                     loadingDialog.loadSuccess();
                 }
 
@@ -285,11 +316,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     }
 
     private void callNumber(String number) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_CALL);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setData(Uri.parse("tel:" + number));
+//        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_CALL);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.setData(Uri.parse("tel:" + number));
+//        startActivity(intent);
+
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + number));
         startActivity(intent);
+    }
+
+    private void callPhone(String number) {
+
     }
 
     private void dialNumber(String number) {
@@ -305,25 +343,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         int viewId = v.getId();
         switch (viewId) {
             case R.id.btn_emergency:
-//                if (isHelping) {
-//                    stopEmergency();
-//                } else {
-//                    sendEmergency();
-//                }
-
                 sendEmergency();
                 break;
             case R.id.btn_110_dial:
-                dialNumber("110");
+                call("110");
                 break;
             case R.id.btn_120_dial:
-                dialNumber("120");
+                call("120");
                 break;
             case R.id.btn_119_dial:
-                dialNumber("119");
+                call("119");
                 break;
             case R.id.btn_122_dial:
-                dialNumber("122");
+                call("122");
                 break;
             case R.id.btn_baidu_map:
                 Intent intent = new Intent(getActivity(), ShowMapActivity.class);

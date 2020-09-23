@@ -32,4 +32,5 @@
 
     <color name="middleblue">#5f9cf9</color>
     <color name="bt_pass_color">#ff0099ff</color>
+    <color name="dark_red">#CD3A0B</color>
 </resources>

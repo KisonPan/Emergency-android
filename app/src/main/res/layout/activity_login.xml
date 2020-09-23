@@ -101,6 +101,7 @@
                 android:layout_marginTop="@dimen/btn_margin_top"
                 android:layout_weight="1"
                 android:background="@drawable/buttonstyle"
+                android:textColor="@color/white"
                 android:text="@string/user_login"/>
         </LinearLayout>
 

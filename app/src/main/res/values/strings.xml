@@ -25,7 +25,7 @@
 
     // 主页Tab相关
     <string name="tab_main_tab_text">首页</string>
-    <string name="tab_contact_tab_text">好友</string>
+    <string name="tab_contact_tab_text">联系人</string>
     <string name="tab_conversation_tab_text">消息</string>
     <string name="tab_profile_tab_text">我</string>
 
@@ -37,10 +37,10 @@
     <string name="create_chat_room">创建聊天室</string>
     <string name="create_team">创建团队</string>
     <string name="create_private_group">创建讨论组</string>
-    <string name="hint_add_user_id">请输入ID</string>
+    <string name="hint_add_user_id">联系人电话</string>
     <string name="hint_add_wording">请输入验证消息</string>
     <string name="contact_add">添加</string>
-    <string name="user_id">对方ID</string>
+    <string name="user_id">联系人电话</string>
     <string name="add_wording">验证消息</string>
 
     // 群信息相关

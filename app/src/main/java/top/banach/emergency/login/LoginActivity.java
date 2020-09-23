@@ -418,6 +418,10 @@ public class LoginActivity extends AppCompatActivity {
                 permissions.add(Manifest.permission.READ_CONTACTS);
             }
 
+            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(TUIKit.getAppContext(), Manifest.permission.CALL_PHONE)) {
+                permissions.add(Manifest.permission.CALL_PHONE);
+            }
+
             if (permissions.size() != 0) {
                 String[] permissionsArray = permissions.toArray(new String[1]);
                 ActivityCompat.requestPermissions(activity,

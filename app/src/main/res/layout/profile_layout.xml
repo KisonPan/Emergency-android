@@ -106,9 +106,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_height="@dimen/btn_height_large"
                     android:layout_alignParentBottom="true"
-                    android:background="@color/bg_negative_btn"
                     android:text="@string/exit"
-                    android:textColor="@color/negative_text" />
+                    android:background="@drawable/buttonstyle"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 

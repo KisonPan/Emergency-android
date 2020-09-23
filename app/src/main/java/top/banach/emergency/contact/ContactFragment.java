@@ -38,6 +38,7 @@ public class ContactFragment extends BaseFragment {
         mContactLayout = view.findViewById(R.id.contact_layout);
         mMenu = new Menu(getActivity(), mContactLayout.getTitleBar(), Menu.MENU_TYPE_CONTACT);
         mContactLayout.getTitleBar().getRightIcon().setVisibility(View.GONE);
+        mContactLayout.getTitleBar().getLeftGroup().setVisibility(View.VISIBLE);
         mContactLayout.getTitleBar().setTitle(
                 getResources().getString(R.string.tab_contact_tab_text),
                 TitleBarLayout.POSITION.MIDDLE);

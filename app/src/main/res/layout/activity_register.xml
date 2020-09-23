@@ -81,6 +81,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_weight="1"
                 android:background="@drawable/buttonstyle"
+                android:textColor="@color/white"
                 android:text="@string/get_comfirm_code" />
         </LinearLayout>
 
