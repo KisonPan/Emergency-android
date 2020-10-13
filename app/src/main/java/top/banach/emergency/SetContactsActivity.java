@@ -302,13 +302,11 @@ public class SetContactsActivity extends BaseActivity {
 
         @Override
         public EmergencyContactItemBean getItem(int position) {
-            // TODO Auto-generated method stub
             return emergencyContactsList.get(position);
         }
 
         @Override
         public long getItemId(int position) {
-            // TODO Auto-generated method stub
             return 0;
         }
 
